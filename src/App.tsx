@@ -1,18 +1,13 @@
-import { useState } from 'react'
-import './App.css'
+import Earth from "./components/Earth";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
+    <div>
       <h1>Hello React + TypeScript!</h1>
       <p>Viteを使ってReactのプロジェクトを作成しました。</p>
-      <button onClick={() => setCount((count) => count + 1)}>
-        Count is {count}
-      </button>
+      <Earth />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
