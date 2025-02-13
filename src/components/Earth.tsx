@@ -19,7 +19,7 @@ const EarthMesh = () => {
   });
 
   return (
-    <Sphere ref={earthRef} args={[2.5, 64, 64]}>
+    <Sphere ref={earthRef} args={[2.7, 64, 64]}>
       <meshStandardMaterial 
         map={earthTexture} 
         emissiveMap={nightTexture} // 🌟 夜の部分だけ光る
@@ -43,7 +43,7 @@ const Earth = () => {
         backgroundColor: "black",
       }}
     >
-      <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
+      <Canvas camera={{ position: [0, 3, 8], fov: 50 }}>
         <ambientLight intensity={1.0} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
         
