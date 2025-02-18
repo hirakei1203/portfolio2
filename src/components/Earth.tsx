@@ -1,5 +1,5 @@
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
-import { OrbitControls, Sphere } from "@react-three/drei";
+import { OrbitControls, Sphere, Stars } from "@react-three/drei";
 import * as THREE from "three";
 import { useRef } from "react";
 
@@ -100,9 +100,13 @@ const Earth = () => {
 
         {/* ✅ マウス操作を追加 */}
         <OrbitControls target={[0, 0, 0]} />
+
+        {/* <Background />  星空テクスチャ */}
+        <Stars />       {/* ランダムな星 */}
       </Canvas>
     </div>
   );
 };
 
 export default Earth;
+
