@@ -19,17 +19,17 @@ const EarthMesh = () => {
   return (
     <>
       {/* 🌍 地球レイヤー */}
-      <Sphere ref={earthRef} args={[4, 128, 128]} position={[0, -2, 0]}>
+      <Sphere ref={earthRef} args={[4, 128, 128]} position={[2, -2, 0]}>
         <meshStandardMaterial map={earthTexture} />
       </Sphere>
 
       {/* ☁️ 雲レイヤー */}
-      <Sphere ref={cloudsRef} args={[4.02, 128, 128]} position={[0, -2, 0]}>
+      <Sphere ref={cloudsRef} args={[4.02, 128, 128]} position={[2, -2, 0]}>
         <meshStandardMaterial map={cloudsTexture} transparent opacity={0.35} />
       </Sphere>
 
       {/* 🏷 UI (HTML要素) */}
-      <Html position={[-2, 2, 0]} center>
+      <Html position={[0, 2, 0]} center>
         <div style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}>
           <a href="#" style={{ color: "white", textDecoration: "none" }}>
             🌍 Earth Exploration
@@ -38,7 +38,7 @@ const EarthMesh = () => {
       </Html>
 
       {/* 言語切り替えボタン */}
-      <Html position={[2, 2, 0]} center>
+      <Html position={[4, 2, 0]} center>
         <button
           style={{
             padding: "10px",
@@ -63,15 +63,15 @@ const Earth = () => {
     <div
       style={{
         position: "fixed",
-        bottom: "-20vh",
-        right: "-20vw",
+        bottom: "0vh",
+        right: "0vw",
         width: "100vw",
         height: "100vh",
         zIndex: 0,
         backgroundColor: "black",
       }}
     >
-      <Canvas camera={{ position: [0, -1, 6], fov: 55 }}>
+      <Canvas camera={{ position: [0, -1, 7], fov: 55 }}>
         <ambientLight intensity={1.0} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
 
