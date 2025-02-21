@@ -2,6 +2,7 @@ import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { OrbitControls, Sphere, Stars, Html } from "@react-three/drei"; // ✅ Html を追加
 import * as THREE from "three";
 import { useRef } from "react";
+import ShootingStars from "./ShootingStars";
 
 // ✅ 地球 & 雲のコンポーネント
 const EarthMesh = () => {
@@ -76,6 +77,7 @@ const Earth = () => {
         <directionalLight position={[5, 5, 5]} intensity={1} />
 
         <Stars /> {/* 🌟 星空背景 */}
+        <ShootingStars />
         <EarthMesh />
 
         <OrbitControls target={[0, 0, 0]} />
