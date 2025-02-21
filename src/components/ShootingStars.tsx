@@ -7,7 +7,7 @@ const ShootingStars = () => {
   
   // ⭐️ 初期の流れ星データを生成
   const stars = useMemo(() => {
-    const positions = new Float32Array(50 * 3); // 50個の流れ星
+    const positions = new Float32Array(2 * 3); // 50個の流れ星
     for (let i = 0; i < 50; i++) {
       positions[i * 3] = (Math.random() - 0.5) * 30; // X 軸（ランダム）
       positions[i * 3 + 1] = Math.random() * 10 + 5; // Y 軸（上から降ってくる）
