@@ -7,7 +7,7 @@ const ShootingStars = () => {
   
   // ⭐️ 初期の流れ星データを生成
   const stars = useMemo(() => {
-    const positions = new Float32Array(2 * 3); // 50個の流れ星
+    const positions = new Float32Array(2 * 3); // 2個の流れ星
     for (let i = 0; i < 50; i++) {
       positions[i * 3] = (Math.random() - 0.5) * 30; // X 軸（ランダム）
       positions[i * 3 + 1] = Math.random() * 10 + 5; // Y 軸（上から降ってくる）
@@ -34,6 +34,22 @@ const ShootingStars = () => {
     }
   });
 
+  const particleTexture = useMemo(() => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 32;
+    canvas.height = 32;
+    const context = canvas.getContext('2d');
+    if (!context) return null;
+
+    const gradient = context.createRadialGradient(16, 16, 0, 16, 16, 16);
+    gradient.addColorStop(0, 'rgba(255,255,255,1)');
+    gradient.addColorStop(1, 'rgba(255,255,255,0)');
+    context.fillStyle = gradient;
+    context.fillRect(0, 0, 32, 32);
+
+    return new THREE.CanvasTexture(canvas);
+  }, []);
+
   return (
     <points ref={starsRef}>
       <bufferGeometry attach="geometry">
@@ -44,7 +60,15 @@ const ShootingStars = () => {
           itemSize={3}
         />
       </bufferGeometry>
-      <pointsMaterial attach="material" color="white" size={0.1} transparent opacity={0.8} />
+      <pointsMaterial
+        attach="material"
+        color="white"
+        size={0.2}
+        transparent
+        opacity={0.8}
+        // sizeAttenuation={true}
+        map={particleTexture}
+      />
     </points>
   );
 };
