@@ -30,10 +30,10 @@ const EarthMesh = () => {
       </Sphere>
 
       {/* 🏷 UI (HTML要素) */}
-      <Html position={[0, 2, 0]} center>
+      <Html position={[-6, 2, 0]} center>
         <div style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}>
           <a href="#" style={{ color: "white", textDecoration: "none" }}>
-            🌍 Earth Exploration
+            Skills
           </a>
         </div>
       </Html>
