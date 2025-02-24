@@ -47,7 +47,7 @@ const EarthMesh = () => {
       </Html>
 
       {/* 言語切り替えボタン */}
-      <Html position={[4, 2, 0]} center>
+      {/* <Html position={[4, 2, 0]} center>
         <button
           style={{
             padding: "10px",
@@ -61,7 +61,7 @@ const EarthMesh = () => {
         >
           Language Switch
         </button>
-      </Html>
+      </Html> */}
     </>
   );
 };
