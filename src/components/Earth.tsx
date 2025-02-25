@@ -30,15 +30,15 @@ const EarthMesh = () => {
       </Sphere>
 
       {/* 🏷 UI (HTML要素) */}
-      <Html position={[-5.15, 2, 0]} center>
+      <Html position={[-5.1, 2, 0]} center>
         <div style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}>
           <a href="#" style={{ color: "white", textDecoration: "none" }}>
-            Skills
+            Projects
           </a>
         </div>
       </Html>
 
-      <Html position={[-5, 1, 0]} center>
+      <Html position={[-5, 0, 0]} center>
         <div style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}>
           <a href="#" style={{ color: "white", textDecoration: "none" }}>
               Career
@@ -46,6 +46,14 @@ const EarthMesh = () => {
         </div>
       </Html>
 
+      <Html position={[-5.15, 1, 0]} center>
+        <div style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}>
+          <a href="#" style={{ color: "white", textDecoration: "none" }}>
+            Skills
+          </a>
+        </div>
+      </Html>
+      
       {/* 言語切り替えボタン */}
       {/* <Html position={[4, 2, 0]} center>
         <button
