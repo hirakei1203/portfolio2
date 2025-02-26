@@ -3,6 +3,7 @@ import { OrbitControls, Sphere, Stars, Html } from "@react-three/drei"; // ✅ H
 import * as THREE from "three";
 import { useRef } from "react";
 import ShootingStars from "./ShootingStars";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 // ✅ 地球 & 雲のコンポーネント
 const EarthMesh = () => {
@@ -70,6 +71,28 @@ const EarthMesh = () => {
           Language Switch
         </button>
       </Html> */}
+
+<Html position={[-5, -3.5, 0]} center>
+  <div style={{ display: "flex", gap: "10px" }}>
+    <a
+      href="https://github.com/your-github" // ✅ GitHubのURLを入れる
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ color: "white", fontSize: "24px" }}
+    >
+      <FaGithub />
+    </a>
+    <a
+      href="https://linkedin.com/in/your-linkedin" // ✅ LinkedInのURLを入れる
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ color: "white", fontSize: "24px" }}
+    >
+      <FaLinkedin />
+    </a>
+  </div>
+</Html>
+
     </>
   );
 };
