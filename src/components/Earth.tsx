@@ -75,7 +75,7 @@ const EarthMesh = () => {
 <Html position={[-5, -3.5, 0]} center>
   <div style={{ display: "flex", gap: "10px" }}>
     <a
-      href="https://github.com/your-github" // ✅ GitHubのURLを入れる
+      href="https://github.com/hirakei1203" // ✅ GitHubのURLを入れる
       target="_blank"
       rel="noopener noreferrer"
       style={{ color: "white", fontSize: "24px" }}
