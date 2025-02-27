@@ -75,7 +75,7 @@ const EarthMesh = () => {
 <Html position={[-5, -3.5, 0]} center>
   <div style={{ display: "flex", gap: "10px" }}>
     <a
-      href="https://github.com/hirakei1203" // ✅ GitHubのURLを入れる
+      href="https://github.com/hirakei1203"
       target="_blank"
       rel="noopener noreferrer"
       style={{ color: "white", fontSize: "24px" }}
@@ -83,7 +83,7 @@ const EarthMesh = () => {
       <FaGithub />
     </a>
     <a
-      href="https://linkedin.com/in/your-linkedin" // ✅ LinkedInのURLを入れる
+      href="https://www.linkedin.com/in/keitaro-hirano-340164191/"
       target="_blank"
       rel="noopener noreferrer"
       style={{ color: "white", fontSize: "24px" }}
