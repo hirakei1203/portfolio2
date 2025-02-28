@@ -1,5 +1,5 @@
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
-import { OrbitControls, Sphere, Stars, Html } from "@react-three/drei"; // ✅ Html を追加
+import { OrbitControls, Sphere, Stars, Html } from "@react-three/drei";
 import * as THREE from "three";
 import { useRef } from "react";
 import ShootingStars from "./ShootingStars";
@@ -115,7 +115,7 @@ const Earth = () => {
         <ambientLight intensity={1.0} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
 
-        <Stars /> {/* 🌟 星空背景 */}
+        <Stars />
         <ShootingStars />
         <EarthMesh />
 
