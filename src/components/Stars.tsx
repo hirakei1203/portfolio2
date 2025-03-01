@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 
 const Stars = () => {
-  const starPositions = new Float32Array(3000); // 星の数を増やせる
+  const starPositions = new Float32Array(3000); // numbers of star
 
   for (let i = 0; i < starPositions.length; i++) {
     starPositions[i] = (Math.random() - 0.5) * 200; // 広範囲に星を配置
