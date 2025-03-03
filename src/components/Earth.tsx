@@ -97,7 +97,6 @@ const EarthMesh = () => {
   );
 };
 
-// ✅ Earth コンポーネント
 const Earth = () => {
   return (
     <div
