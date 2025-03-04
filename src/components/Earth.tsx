@@ -1,12 +1,12 @@
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { OrbitControls, Sphere, Stars, Html } from "@react-three/drei";
 import * as THREE from "three";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import ShootingStars from "./ShootingStars";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 // ✅ 地球 & 雲のコンポーネント
-const EarthMesh = () => {
+const EarthMesh = ({ onProjectClick }: { onProjectClick: () => void }) => {
   const earthTexture = useLoader(THREE.TextureLoader, "./textures/earth.png");
   const cloudsTexture = useLoader(THREE.TextureLoader, "./textures/cloud3.jpg");
 
@@ -32,7 +32,7 @@ const EarthMesh = () => {
 
       {/* 🏷 UI (HTML要素) */}
       <Html position={[-5.1, 2, 0]} center>
-        <div style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}>
+        <div style={{ color: "white", fontSize: "20px", fontWeight: "bold" }} onClick={onProjectClick}>
           <a href="#" style={{ color: "white", textDecoration: "none" }}>
             Projects
           </a>
@@ -97,7 +97,70 @@ const EarthMesh = () => {
   );
 };
 
+const ProjectCards = ({ onClose }: { onClose: () => void }) => {
+  return (
+    <div
+      style={{
+        position: "fixed",
+        top: "10%",
+        right: "5%",
+        width: "40%",
+        height: "70%",
+        background: "rgba(255, 255, 255, 0.1)",
+        backdropFilter: "blur(10px)",
+        borderRadius: "15px",
+        padding: "20px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <button
+        onClick={onClose}
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "10px",
+          background: "red",
+          color: "white",
+          border: "none",
+          borderRadius: "50%",
+          width: "30px",
+          height: "30px",
+          cursor: "pointer",
+        }}
+      >
+        ✕
+      </button>
+      <div
+        style={{
+          width: "80%",
+          height: "30%",
+          background: "lightblue",
+          borderRadius: "15px",
+        }}
+      >
+        {/* ここにプロジェクトの画像を追加予定 */}
+      </div>
+      <div
+        style={{
+          width: "80%",
+          height: "30%",
+          background: "lightblue",
+          borderRadius: "15px",
+        }}
+      >
+        {/* ここにプロジェクトの画像を追加予定 */}
+      </div>
+    </div>
+  );
+};
+
 const Earth = () => {
+  const [showProjects, setShowProjects] = useState(false);
+
   return (
     <div
       style={{
@@ -116,10 +179,12 @@ const Earth = () => {
 
         <Stars />
         <ShootingStars />
-        <EarthMesh />
+        <EarthMesh onProjectClick={() => setShowProjects(true)} />
 
         <OrbitControls target={[0, 0, 0]} />
       </Canvas>
+
+      {showProjects && <ProjectCards onClose={() => setShowProjects(false)} />}
     </div>
   );
 };
