@@ -72,7 +72,7 @@ const EarthMesh = () => {
         </button>
       </Html> */}
 
-<Html position={[-5, -3.5, 0]} center>
+<Html position={[-4.7, -3, 0]} center>
   <div style={{ display: "flex", gap: "10px" }}>
     <a
       href="https://github.com/hirakei1203"
