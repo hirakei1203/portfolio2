@@ -3,7 +3,7 @@ import { OrbitControls, Sphere, Stars, Html } from "@react-three/drei";
 import * as THREE from "three";
 import { useRef, useState } from "react";
 import ShootingStars from "./ShootingStars";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTimes } from "react-icons/fa";
 
 // ✅ 地球 & 雲のコンポーネント
 const EarthMesh = ({ onProjectClick }: { onProjectClick: () => void }) => {
@@ -123,16 +123,16 @@ const ProjectCards = ({ onClose }: { onClose: () => void }) => {
           position: "absolute",
           top: "10px",
           right: "10px",
-          background: "grey",
+          background: "transparent",
           color: "white",
           border: "none",
           borderRadius: "50%",
-          width: "20px",
-          height: "20px",
+          width: "24px",
+          height: "24px",
           cursor: "pointer",
         }}
       >
-        ✕
+        <FaTimes size={14}></FaTimes>
       </button>
       <div
         style={{
