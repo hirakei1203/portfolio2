@@ -123,12 +123,12 @@ const ProjectCards = ({ onClose }: { onClose: () => void }) => {
           position: "absolute",
           top: "10px",
           right: "10px",
-          background: "red",
+          background: "grey",
           color: "white",
           border: "none",
           borderRadius: "50%",
-          width: "30px",
-          height: "30px",
+          width: "20px",
+          height: "20px",
           cursor: "pointer",
         }}
       >
@@ -136,7 +136,7 @@ const ProjectCards = ({ onClose }: { onClose: () => void }) => {
       </button>
       <div
         style={{
-          width: "80%",
+          width: "40%",
           height: "30%",
           background: "lightblue",
           borderRadius: "15px",
@@ -146,7 +146,7 @@ const ProjectCards = ({ onClose }: { onClose: () => void }) => {
       </div>
       <div
         style={{
-          width: "80%",
+          width: "40%",
           height: "30%",
           background: "lightblue",
           borderRadius: "15px",
