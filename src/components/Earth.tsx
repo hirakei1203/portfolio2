@@ -134,25 +134,34 @@ const ProjectCards = ({ onClose }: { onClose: () => void }) => {
       >
         <FaTimes size={14}></FaTimes>
       </button>
-      <div
-        style={{
-          width: "40%",
-          height: "30%",
-          background: "lightblue",
-          borderRadius: "15px",
-        }}
-      >
-        {/* ここにプロジェクトの画像を追加予定 */}
-      </div>
-      <div
-        style={{
-          width: "40%",
-          height: "30%",
-          background: "lightblue",
-          borderRadius: "15px",
-        }}
-      >
-        {/* ここにプロジェクトの画像を追加予定 */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr", // 🔥 2列にする
+            gap: "20px",
+            width: "90%",
+          }}
+        >
+          <div
+            style={{
+              width: "100%",
+              height: "150px",
+              background: "lightblue",
+              borderRadius: "15px",
+            }}
+          >
+            test1{/* ここにプロジェクトの画像を追加予定 */}
+          </div>
+          <div
+            style={{
+              width: "100%",
+              height: "150px",
+              background: "lightblue",
+              borderRadius: "15px",
+            }}
+          >
+          test2{/* ここにプロジェクトの画像を追加予定 */}
+        </div>
       </div>
     </div>
   );
