@@ -170,6 +170,10 @@ const ProjectCards = ({ onClose }: { onClose: () => void }) => {
 const Earth = () => {
   const [showProjects, setShowProjects] = useState(false);
 
+  const toggleProjects = () => {
+    setShowProjects((prev) => !prev)
+  };
+
   return (
     <div
       style={{
@@ -188,7 +192,11 @@ const Earth = () => {
 
         <Stars />
         <ShootingStars />
-        <EarthMesh onProjectClick={() => setShowProjects(true)} onClose={() => setShowProjects(false)} />
+        <EarthMesh 
+          onProjectClick={() => setShowProjects(true)} 
+          onClose={() => setShowProjects(false)}
+          onProjectClick={toggleProjects}
+           />
 
         <OrbitControls target={[0, 0, 0]} />
       </Canvas>
