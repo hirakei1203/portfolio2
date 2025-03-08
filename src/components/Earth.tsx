@@ -6,7 +6,7 @@ import ShootingStars from "./ShootingStars";
 import { FaGithub, FaLinkedin, FaTimes } from "react-icons/fa";
 
 // ✅ 地球 & 雲のコンポーネント
-const EarthMesh = ({ onProjectClick }: { onProjectClick: () => void }) => {
+const EarthMesh = ({ onProjectClick, onClose }: { onProjectClick: () => void; onClose: () => void  }) => {
   const earthTexture = useLoader(THREE.TextureLoader, "./textures/earth.png");
   const cloudsTexture = useLoader(THREE.TextureLoader, "./textures/cloud3.jpg");
 
@@ -40,7 +40,7 @@ const EarthMesh = ({ onProjectClick }: { onProjectClick: () => void }) => {
       </Html>
 
       <Html position={[-5, 0, 0]} center>
-        <div style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}>
+        <div style={{ color: "white", fontSize: "20px", fontWeight: "bold" }} onClick={onClose}>
           <a href="#" style={{ color: "white", textDecoration: "none" }}>
               Career
           </a>
@@ -48,7 +48,7 @@ const EarthMesh = ({ onProjectClick }: { onProjectClick: () => void }) => {
       </Html>
 
       <Html position={[-5.15, 1, 0]} center>
-        <div style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}>
+        <div style={{ color: "white", fontSize: "20px", fontWeight: "bold" }} onClick={onClose}>
           <a href="#" style={{ color: "white", textDecoration: "none" }}>
             Skills
           </a>
@@ -188,7 +188,7 @@ const Earth = () => {
 
         <Stars />
         <ShootingStars />
-        <EarthMesh onProjectClick={() => setShowProjects(true)} />
+        <EarthMesh onProjectClick={() => setShowProjects(true)} onClose={() => setShowProjects(false)} />
 
         <OrbitControls target={[0, 0, 0]} />
       </Canvas>
