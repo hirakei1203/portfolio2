@@ -193,7 +193,6 @@ const Earth = () => {
         <Stars />
         <ShootingStars />
         <EarthMesh 
-          onProjectClick={() => setShowProjects(true)} 
           onClose={() => setShowProjects(false)}
           onProjectClick={toggleProjects}
            />
