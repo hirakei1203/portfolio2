@@ -56,21 +56,6 @@ const EarthMesh = ({ onProjectClick, onClose }: { onProjectClick: () => void; on
       </Html>
       
       {/* 言語切り替えボタン */}
-      {/* <Html position={[4, 2, 0]} center>
-        <button
-          style={{
-            padding: "10px",
-            background: "rgba(255,255,255,0.2)",
-            border: "none",
-            color: "white",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-          onClick={() => alert("Language switched!")}
-        >
-          Language Switch
-        </button>
-      </Html> */}
 
 <Html position={[-4.7, -3, 0]} center>
   <div style={{ display: "flex", gap: "10px" }}>
