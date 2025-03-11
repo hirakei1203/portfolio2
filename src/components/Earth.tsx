@@ -6,7 +6,10 @@ import ShootingStars from "./ShootingStars";
 import { FaGithub, FaLinkedin, FaTimes } from "react-icons/fa";
 
 // ✅ 地球 & 雲のコンポーネント
-const EarthMesh = ({ onProjectClick, onClose }: { onProjectClick: () => void; onClose: () => void  }) => {
+const EarthMesh = ({ onProjectClick, onCareerClick }: { 
+  onProjectClick: () => void;
+  onCareerClick: () => void;
+}) => {
   const earthTexture = useLoader(THREE.TextureLoader, "./textures/earth.png");
   const cloudsTexture = useLoader(THREE.TextureLoader, "./textures/cloud3.jpg");
 
@@ -30,7 +33,21 @@ const EarthMesh = ({ onProjectClick, onClose }: { onProjectClick: () => void; on
         <meshStandardMaterial map={cloudsTexture} transparent opacity={0.35} />
       </Sphere>
 
-      {/* 🏷 UI (HTML要素) */}
+      {/* Career */}
+      <Html position={[-4.85, 0, 0]} center>
+        <div style={{ 
+          color: "white", 
+          fontSize: "20px", 
+          fontWeight: "bold",
+          width: "100px",
+          textAlign: "left"
+        }}>
+          <a href="#" style={{ color: "white", textDecoration: "none" }} onClick={onCareerClick}>
+            Career
+          </a>
+        </div>
+      </Html>
+
       <Html position={[-5.1, 2, 0]} center>
         <div style={{ color: "white", fontSize: "20px", fontWeight: "bold" }} onClick={onProjectClick}>
           <a href="#" style={{ color: "white", textDecoration: "none" }}>
@@ -39,16 +56,8 @@ const EarthMesh = ({ onProjectClick, onClose }: { onProjectClick: () => void; on
         </div>
       </Html>
 
-      <Html position={[-5, 0, 0]} center>
-        <div style={{ color: "white", fontSize: "20px", fontWeight: "bold" }} onClick={onClose}>
-          <a href="#" style={{ color: "white", textDecoration: "none" }}>
-              Career
-          </a>
-        </div>
-      </Html>
-
       <Html position={[-5.15, 1, 0]} center>
-        <div style={{ color: "white", fontSize: "20px", fontWeight: "bold" }} onClick={onClose}>
+        <div style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}>
           <a href="#" style={{ color: "white", textDecoration: "none" }}>
             Skills
           </a>
@@ -152,12 +161,51 @@ const ProjectCards = ({ onClose }: { onClose: () => void }) => {
   );
 };
 
+const CareerCards = ({ onClose }: { onClose: () => void }) => {
+  return (
+    <div
+      style={{
+        position: "fixed",
+        top: "10%",
+        right: "5%",
+        width: "40%",
+        height: "70%",
+        background: "rgba(255, 255, 255, 0.1)",
+        backdropFilter: "blur(10px)",
+        borderRadius: "15px",
+        padding: "20px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <button
+        onClick={onClose}
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "10px",
+          background: "transparent",
+          color: "white",
+          border: "none",
+          borderRadius: "50%",
+          width: "24px",
+          height: "24px",
+          cursor: "pointer",
+        }}
+      >
+        <FaTimes size={14} />
+      </button>
+      <div style={{ color: "white" }}>Career Content Here</div>
+    </div>
+  );
+};
+
 const Earth = () => {
   const [showProjects, setShowProjects] = useState(false);
-
-  const toggleProjects = () => {
-    setShowProjects((prev) => !prev)
-  };
+  const [showCareer, setShowCareer] = useState(false);
 
   return (
     <div
@@ -178,14 +226,15 @@ const Earth = () => {
         <Stars />
         <ShootingStars />
         <EarthMesh 
-          onClose={() => setShowProjects(false)}
-          onProjectClick={toggleProjects}
-           />
+          onProjectClick={() => setShowProjects(true)}
+          onCareerClick={() => setShowCareer(true)}
+        />
 
         <OrbitControls target={[0, 0, 0]} />
       </Canvas>
 
       {showProjects && <ProjectCards onClose={() => setShowProjects(false)} />}
+      {showCareer && <CareerCards onClose={() => setShowCareer(false)} />}
     </div>
   );
 };
