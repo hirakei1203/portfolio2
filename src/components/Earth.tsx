@@ -207,34 +207,38 @@ const Earth = () => {
   const [showProjects, setShowProjects] = useState(false);
   const [showCareer, setShowCareer] = useState(false);
 
+  const toggleProjects = () => {
+    setShowProjects(prev => !prev);
+  };
+
+  const toggleCareer = () => {
+    setShowCareer(prev => !prev);
+  };
+
   return (
-    <div
-      style={{
-        position: "fixed",
-        bottom: "0vh",
-        right: "0vw",
-        width: "100vw",
-        height: "100vh",
-        zIndex: 0,
-        backgroundColor: "black",
-      }}
-    >
+    <div style={{
+      position: "fixed",
+      bottom: "0vh",
+      right: "0vw",
+      width: "100vw",
+      height: "100vh",
+      zIndex: 0,
+      backgroundColor: "black",
+    }}>
       <Canvas camera={{ position: [0, -1, 7], fov: 55 }}>
         <ambientLight intensity={1.0} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
-
         <Stars />
         <ShootingStars />
         <EarthMesh 
-          onProjectClick={() => setShowProjects(true)}
-          onCareerClick={() => setShowCareer(true)}
+          onProjectClick={toggleProjects}
+          onCareerClick={toggleCareer}
         />
-
         <OrbitControls target={[0, 0, 0]} />
       </Canvas>
 
-      {showProjects && <ProjectCards onClose={() => setShowProjects(false)} />}
-      {showCareer && <CareerCards onClose={() => setShowCareer(false)} />}
+      {showProjects && <ProjectCards onClose={toggleProjects} />}
+      {showCareer && <CareerCards onClose={toggleCareer} />}
     </div>
   );
 };
