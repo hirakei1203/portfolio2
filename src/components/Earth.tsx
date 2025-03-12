@@ -48,6 +48,7 @@ const EarthMesh = ({ onProjectClick, onCareerClick }: {
         </div>
       </Html>
 
+      {/* Project */}
       <Html position={[-5.1, 2, 0]} center>
         <div style={{ color: "white", fontSize: "20px", fontWeight: "bold" }} onClick={onProjectClick}>
           <a href="#" style={{ color: "white", textDecoration: "none" }}>
@@ -56,6 +57,7 @@ const EarthMesh = ({ onProjectClick, onCareerClick }: {
         </div>
       </Html>
 
+      {/* Skills */}
       <Html position={[-5.15, 1, 0]} center>
         <div style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}>
           <a href="#" style={{ color: "white", textDecoration: "none" }}>
