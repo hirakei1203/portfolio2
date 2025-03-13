@@ -5,7 +5,6 @@ import { useRef, useState } from "react";
 import ShootingStars from "./ShootingStars";
 import { FaGithub, FaLinkedin, FaTimes } from "react-icons/fa";
 
-// ✅ 地球 & 雲のコンポーネント
 const EarthMesh = ({ onProjectClick, onCareerClick }: { 
   onProjectClick: () => void;
   onCareerClick: () => void;
