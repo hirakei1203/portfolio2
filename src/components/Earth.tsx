@@ -22,12 +22,12 @@ const EarthMesh = ({ onProjectClick, onCareerClick }: {
 
   return (
     <>
-      {/* 🌍 地球レイヤー */}
+      {/* Earth layer */}
       <Sphere ref={earthRef} args={[4, 128, 128]} position={[2, -2, 0]}>
         <meshStandardMaterial map={earthTexture} />
       </Sphere>
 
-      {/* ☁️ 雲レイヤー */}
+      {/* Cloud layer */}
       <Sphere ref={cloudsRef} args={[4.02, 128, 128]} position={[2, -2, 0]}>
         <meshStandardMaterial map={cloudsTexture} transparent opacity={0.35} />
       </Sphere>
