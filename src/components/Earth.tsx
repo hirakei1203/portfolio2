@@ -3,7 +3,7 @@ import { OrbitControls, Sphere, Stars, Html } from "@react-three/drei";
 import * as THREE from "three";
 import { useRef, useState } from "react";
 import ShootingStars from "./ShootingStars";
-import { FaGithub, FaLinkedin, FaTimes, FaAws, FaCalculator, FaChartLine, FaLanguage, FaCertificate, FaGraduationCap } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTimes, FaAws, FaCalculator, FaChartLine, FaLanguage, FaCertificate, FaGraduationCap, FaMobileAlt, FaCalendarAlt, FaBullhorn, FaExternalLinkAlt } from "react-icons/fa";
 import { SiPhp, SiLaravel, SiVuedotjs, SiJquery, SiFlutter } from "react-icons/si";
 
 const EarthMesh = ({ onProjectClick, onCareerClick, onSkillsClick }: { 
@@ -165,14 +165,20 @@ const ProjectCards = ({ onClose }: { onClose: () => void }) => {
 };
 
 const CareerCards = ({ onClose }: { onClose: () => void }) => {
+  const jobs = [
+    { name: "Marketing Automation Tool", icon: <FaBullhorn size={32} /> },
+    { name: "Scheduling Tool", icon: <FaCalendarAlt size={32} /> },
+    { name: "Sales Force Automation Application (Mobile)", icon: <FaMobileAlt size={32} /> }
+  ];
+
   return (
     <div
       style={{
         position: "fixed",
-        top: "10%",
+        top: "5%",
         right: "5%",
         width: "40%",
-        height: "70%",
+        height: "85%",
         background: "rgba(255, 255, 255, 0.1)",
         backdropFilter: "blur(10px)",
         borderRadius: "15px",
@@ -180,8 +186,9 @@ const CareerCards = ({ onClose }: { onClose: () => void }) => {
         display: "flex",
         flexDirection: "column",
         gap: "20px",
-        justifyContent: "center",
+        justifyContent: "flex-start",
         alignItems: "center",
+        overflowY: "auto"
       }}
     >
       <button
@@ -201,7 +208,65 @@ const CareerCards = ({ onClose }: { onClose: () => void }) => {
       >
         <FaTimes size={14} />
       </button>
-      <div style={{ color: "white" }}>Career Content Here</div>
+      
+      <h2 style={{ 
+        color: "white", 
+        marginBottom: "10px", 
+        marginTop: "10px",
+        width: "90%",
+        textAlign: "left"
+      }}>Job</h2>
+      <div style={{ 
+        display: "grid", 
+        gridTemplateColumns: "1fr", 
+        gap: "20px",
+        width: "90%"
+      }}>
+        {jobs.map((job) => {
+          const [isHovered, setIsHovered] = useState(false);
+          
+          return (
+            <div 
+              key={job.name}
+              style={{
+                background: "rgba(255, 255, 255, 0.15)", 
+                padding: "15px",
+                borderRadius: "10px",
+                textAlign: "center",
+                color: "white",
+                fontSize: "18px",
+                fontWeight: "bold",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: "15px"
+              }}
+            >
+              {job.icon}
+              <a 
+                href="#" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                style={{ 
+                  color: "white", 
+                  textDecoration: isHovered ? "underline" : "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  transition: "text-decoration 0.2s ease"
+                }}
+              >
+                <span style={{ textDecoration: "inherit" }}>
+                  {job.name}
+                  <FaExternalLinkAlt size={14} style={{ opacity: 0.7, marginLeft: "8px" }} />
+                </span>
+              </a>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
