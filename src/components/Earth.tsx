@@ -5,9 +5,10 @@ import { useRef, useState } from "react";
 import ShootingStars from "./ShootingStars";
 import { FaGithub, FaLinkedin, FaTimes } from "react-icons/fa";
 
-const EarthMesh = ({ onProjectClick, onCareerClick }: { 
+const EarthMesh = ({ onProjectClick, onCareerClick, onSkillsClick }: { 
   onProjectClick: () => void;
   onCareerClick: () => void;
+  onSkillsClick: () => void;
 }) => {
   const earthTexture = useLoader(THREE.TextureLoader, "./textures/earth.png");
   const cloudsTexture = useLoader(THREE.TextureLoader, "./textures/cloud3.jpg");
@@ -59,7 +60,7 @@ const EarthMesh = ({ onProjectClick, onCareerClick }: {
       {/* Skills */}
       <Html position={[-5.15, 1, 0]} center>
         <div style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}>
-          <a href="#" style={{ color: "white", textDecoration: "none" }}>
+          <a href="#" style={{ color: "white", textDecoration: "none" }} onClick={onSkillsClick}>
             Skills
           </a>
         </div>
@@ -204,9 +205,52 @@ const CareerCards = ({ onClose }: { onClose: () => void }) => {
   );
 };
 
+const SkillsCards = ({ onClose }: { onClose: () => void }) => {
+  return (
+    <div
+      style={{
+        position: "fixed",
+        top: "10%",
+        right: "5%",
+        width: "40%",
+        height: "70%",
+        background: "rgba(255, 255, 255, 0.1)",
+        backdropFilter: "blur(10px)",
+        borderRadius: "15px",
+        padding: "20px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <button
+        onClick={onClose}
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "10px",
+          background: "transparent",
+          color: "white",
+          border: "none",
+          borderRadius: "50%",
+          width: "24px",
+          height: "24px",
+          cursor: "pointer",
+        }}
+      >
+        <FaTimes size={14} />
+      </button>
+      <div style={{ color: "white" }}>Skills Content Here</div>
+    </div>
+  );
+};
+
 const Earth = () => {
   const [showProjects, setShowProjects] = useState(false);
   const [showCareer, setShowCareer] = useState(false);
+  const [showSkills, setShowSkills] = useState(false);
 
   const toggleProjects = () => {
     setShowProjects(prev => !prev);
@@ -214,6 +258,10 @@ const Earth = () => {
 
   const toggleCareer = () => {
     setShowCareer(prev => !prev);
+  };
+
+  const toggleSkills = () => {
+    setShowSkills(prev => !prev);
   };
 
   return (
@@ -234,12 +282,14 @@ const Earth = () => {
         <EarthMesh 
           onProjectClick={toggleProjects}
           onCareerClick={toggleCareer}
+          onSkillsClick={toggleSkills}
         />
         <OrbitControls target={[0, 0, 0]} />
       </Canvas>
 
       {showProjects && <ProjectCards onClose={toggleProjects} />}
       {showCareer && <CareerCards onClose={toggleCareer} />}
+      {showSkills && <SkillsCards onClose={toggleSkills} />}
     </div>
   );
 };
