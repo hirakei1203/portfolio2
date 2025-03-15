@@ -3,7 +3,7 @@ import { OrbitControls, Sphere, Stars, Html } from "@react-three/drei";
 import * as THREE from "three";
 import { useRef, useState } from "react";
 import ShootingStars from "./ShootingStars";
-import { FaGithub, FaLinkedin, FaTimes, FaAws, FaCalculator, FaChartLine, FaLanguage } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTimes, FaAws, FaCalculator, FaChartLine, FaLanguage, FaCertificate, FaGraduationCap } from "react-icons/fa";
 import { SiPhp, SiLaravel, SiVuedotjs, SiJquery, SiFlutter } from "react-icons/si";
 
 const EarthMesh = ({ onProjectClick, onCareerClick, onSkillsClick }: { 
@@ -217,9 +217,14 @@ const SkillsCards = ({ onClose }: { onClose: () => void }) => {
   ];
 
   const crossDomainSkills = [
+    { name: "Web Marketing", icon: <FaChartLine size={32} /> },
     { name: "Accounting", icon: <FaCalculator size={32} /> },
-    { name: "Marketing", icon: <FaChartLine size={32} /> },
     { name: "Japanese", icon: <FaLanguage size={32} /> }
+  ];
+
+  const certifications = [
+    { name: "AWS Certified Developer Associate", status: "In Progress", icon: <FaAws size={32} /> },
+    { name: "MBA", status: "In Progress", icon: <FaGraduationCap size={32} /> }
   ];
 
   return (
@@ -316,6 +321,46 @@ const SkillsCards = ({ onClose }: { onClose: () => void }) => {
           >
             {skill.icon}
             {skill.name}
+          </div>
+        ))}
+      </div>
+
+      <h2 style={{ color: "white", marginBottom: "10px", marginTop: "20px" }}>Certification</h2>
+      <div style={{ 
+        display: "grid", 
+        gridTemplateColumns: "repeat(2, 1fr)", 
+        gap: "20px",
+        width: "90%"
+      }}>
+        {certifications.map((cert) => (
+          <div 
+            key={cert.name}
+            style={{
+              background: "rgba(255, 255, 255, 0.15)", 
+              padding: "15px",
+              borderRadius: "10px",
+              textAlign: "center",
+              color: "white",
+              fontSize: "18px",
+              fontWeight: "bold",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "10px"
+            }}
+          >
+            {cert.icon}
+            <div>
+              {cert.name}
+              <div style={{ 
+                fontSize: "14px", 
+                fontWeight: "normal", 
+                marginTop: "5px",
+                color: "rgba(255, 255, 255, 0.7)" 
+              }}>
+                {cert.status}
+              </div>
+            </div>
           </div>
         ))}
       </div>
