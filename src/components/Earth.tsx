@@ -3,7 +3,8 @@ import { OrbitControls, Sphere, Stars, Html } from "@react-three/drei";
 import * as THREE from "three";
 import { useRef, useState } from "react";
 import ShootingStars from "./ShootingStars";
-import { FaGithub, FaLinkedin, FaTimes } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTimes, FaAws, FaCalculator, FaChartLine, FaLanguage } from "react-icons/fa";
+import { SiPhp, SiLaravel, SiVuedotjs, SiJquery, SiFlutter } from "react-icons/si";
 
 const EarthMesh = ({ onProjectClick, onCareerClick, onSkillsClick }: { 
   onProjectClick: () => void;
@@ -206,14 +207,29 @@ const CareerCards = ({ onClose }: { onClose: () => void }) => {
 };
 
 const SkillsCards = ({ onClose }: { onClose: () => void }) => {
+  const skillsWithIcons = [
+    { name: "PHP", icon: <SiPhp size={32} /> },
+    { name: "Laravel", icon: <SiLaravel size={32} /> },
+    { name: "Vue.js", icon: <SiVuedotjs size={32} /> },
+    { name: "jQuery", icon: <SiJquery size={32} /> },
+    { name: "Flutter", icon: <SiFlutter size={32} /> },
+    { name: "AWS", icon: <FaAws size={32} /> }
+  ];
+
+  const crossDomainSkills = [
+    { name: "Accounting", icon: <FaCalculator size={32} /> },
+    { name: "Marketing", icon: <FaChartLine size={32} /> },
+    { name: "Japanese", icon: <FaLanguage size={32} /> }
+  ];
+
   return (
     <div
       style={{
         position: "fixed",
-        top: "10%",
+        top: "5%",
         right: "5%",
         width: "40%",
-        height: "70%",
+        height: "85%",
         background: "rgba(255, 255, 255, 0.1)",
         backdropFilter: "blur(10px)",
         borderRadius: "15px",
@@ -221,8 +237,9 @@ const SkillsCards = ({ onClose }: { onClose: () => void }) => {
         display: "flex",
         flexDirection: "column",
         gap: "20px",
-        justifyContent: "center",
+        justifyContent: "flex-start",
         alignItems: "center",
+        overflowY: "auto"
       }}
     >
       <button
@@ -242,7 +259,66 @@ const SkillsCards = ({ onClose }: { onClose: () => void }) => {
       >
         <FaTimes size={14} />
       </button>
-      <div style={{ color: "white" }}>Skills Content Here</div>
+      
+      <h2 style={{ color: "white", marginBottom: "10px", marginTop: "10px" }}>Technical Skills</h2>
+      <div style={{ 
+        display: "grid", 
+        gridTemplateColumns: "repeat(3, 1fr)", 
+        gap: "20px",
+        width: "90%"
+      }}>
+        {skillsWithIcons.map((skill) => (
+          <div 
+            key={skill.name}
+            style={{
+              background: "rgba(255, 255, 255, 0.15)", 
+              padding: "15px",
+              borderRadius: "10px",
+              textAlign: "center",
+              color: "white",
+              fontSize: "18px",
+              fontWeight: "bold",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "10px"
+            }}
+          >
+            {skill.icon}
+            {skill.name}
+          </div>
+        ))}
+      </div>
+      
+      <h2 style={{ color: "white", marginBottom: "10px", marginTop: "20px" }}>Cross-Domain Knowledge</h2>
+      <div style={{ 
+        display: "grid", 
+        gridTemplateColumns: "repeat(3, 1fr)", 
+        gap: "20px",
+        width: "90%"
+      }}>
+        {crossDomainSkills.map((skill) => (
+          <div 
+            key={skill.name}
+            style={{
+              background: "rgba(255, 255, 255, 0.15)", 
+              padding: "15px",
+              borderRadius: "10px",
+              textAlign: "center",
+              color: "white",
+              fontSize: "18px",
+              fontWeight: "bold",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "10px"
+            }}
+          >
+            {skill.icon}
+            {skill.name}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
