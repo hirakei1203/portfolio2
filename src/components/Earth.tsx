@@ -254,14 +254,26 @@ const Earth = () => {
 
   const toggleProjects = () => {
     setShowProjects(prev => !prev);
+    if (!showProjects) {
+      setShowCareer(false);
+      setShowSkills(false);
+    }
   };
 
   const toggleCareer = () => {
     setShowCareer(prev => !prev);
+    if (!showCareer) {
+      setShowProjects(false);
+      setShowSkills(false);
+    }
   };
 
   const toggleSkills = () => {
     setShowSkills(prev => !prev);
+    if (!showSkills) {
+      setShowProjects(false);
+      setShowCareer(false);
+    }
   };
 
   return (
