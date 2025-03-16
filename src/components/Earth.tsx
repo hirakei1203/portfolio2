@@ -95,14 +95,23 @@ const EarthMesh = ({ onProjectClick, onCareerClick, onSkillsClick }: {
 };
 
 const ProjectCards = ({ onClose }: { onClose: () => void }) => {
+  const projects = [
+    { 
+      name: "Vancouver Information Center", 
+      description: "Map Information Site",
+      tech: "Laravel",
+      status: "In Progress"
+    }
+  ];
+
   return (
     <div
       style={{
         position: "fixed",
-        top: "10%",
+        top: "5%",
         right: "5%",
         width: "40%",
-        height: "70%",
+        height: "85%",
         background: "rgba(255, 255, 255, 0.1)",
         backdropFilter: "blur(10px)",
         borderRadius: "15px",
@@ -110,8 +119,9 @@ const ProjectCards = ({ onClose }: { onClose: () => void }) => {
         display: "flex",
         flexDirection: "column",
         gap: "20px",
-        justifyContent: "center",
+        justifyContent: "flex-start",
         alignItems: "center",
+        overflowY: "auto"
       }}
     >
       <button
@@ -129,36 +139,58 @@ const ProjectCards = ({ onClose }: { onClose: () => void }) => {
           cursor: "pointer",
         }}
       >
-        <FaTimes size={14}></FaTimes>
+        <FaTimes size={14} />
       </button>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr", // 🔥 2列にする
-            gap: "20px",
-            width: "90%",
-          }}
-        >
-          <div
+      
+      <h2 style={{ 
+        color: "white", 
+        marginBottom: "10px", 
+        marginTop: "10px",
+        width: "90%",
+        textAlign: "left"
+      }}>Projects</h2>
+      
+      <div style={{ 
+        display: "grid", 
+        gridTemplateColumns: "1fr", 
+        gap: "20px",
+        width: "90%"
+      }}>
+        {projects.map((project, index) => (
+          <div 
+            key={index}
             style={{
-              width: "100%",
-              height: "150px",
-              background: "lightblue",
-              borderRadius: "15px",
+              background: "rgba(255, 255, 255, 0.15)", 
+              padding: "20px",
+              borderRadius: "10px",
+              color: "white",
             }}
           >
-            test1{/* ここにプロジェクトの画像を追加予定 */}
+            <h3 style={{ marginTop: 0, marginBottom: "10px" }}>{project.name}</h3>
+            <p style={{ margin: "10px 0", opacity: 0.9 }}>{project.description}</p>
+            <div style={{ 
+              fontSize: "14px", 
+              marginTop: "15px",
+              opacity: 0.7,
+              display: "flex",
+              alignItems: "center"
+            }}>
+              <span style={{ fontWeight: "bold", marginRight: "10px" }}>Tech Stack:</span>
+              {project.tech}
+            </div>
+            <div style={{
+              fontSize: "14px",
+              marginTop: "10px",
+              backgroundColor: "rgba(255, 255, 255, 0.1)",
+              padding: "5px 10px",
+              borderRadius: "5px",
+              display: "inline-block",
+              color: "rgba(255, 255, 255, 0.9)"
+            }}>
+              {project.status}
+            </div>
           </div>
-          <div
-            style={{
-              width: "100%",
-              height: "150px",
-              background: "lightblue",
-              borderRadius: "15px",
-            }}
-          >
-          test2{/* ここにプロジェクトの画像を追加予定 */}
-        </div>
+        ))}
       </div>
     </div>
   );
