@@ -99,7 +99,7 @@ const ProjectCards = ({ onClose }: { onClose: () => void }) => {
     { 
       name: "Vancouver Information Center", 
       description: "Map Information Site",
-      tech: "Laravel",
+      tech: "Laravel, Vue.js AWS",
       status: "In Progress"
     }
   ];
