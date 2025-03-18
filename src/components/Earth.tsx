@@ -97,8 +97,8 @@ const EarthMesh = ({ onProjectClick, onCareerClick, onSkillsClick }: {
 const ProjectCards = ({ onClose }: { onClose: () => void }) => {
   const projects = [
     { 
-      name: "Vancouver Information Center", 
-      description: "Map Information Site",
+      name: "Vancouver Information Map", 
+      description: "Personalized Information Site",
       tech: "Laravel, Vue.js AWS",
       status: "In Progress"
     }
