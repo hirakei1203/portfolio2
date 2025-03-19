@@ -1,26 +1,51 @@
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { OrbitControls, Sphere, Stars, Html } from "@react-three/drei";
 import * as THREE from "three";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import ShootingStars from "./ShootingStars";
-import { FaGithub, FaLinkedin, FaTimes, FaAws, FaCalculator, FaChartLine, FaLanguage, FaCertificate, FaGraduationCap, FaMobileAlt, FaCalendarAlt, FaBullhorn, FaExternalLinkAlt, FaLayerGroup, FaCode, FaSync, FaMicrochip, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTimes, FaAws, FaCalculator, FaChartLine, FaLanguage, FaCertificate, FaGraduationCap, FaMobileAlt, FaCalendarAlt, FaBullhorn, FaExternalLinkAlt, FaCode, FaSync, FaMicrochip, FaEnvelope, FaCube } from "react-icons/fa";
 import { SiPhp, SiLaravel, SiVuedotjs, SiJquery, SiFlutter } from "react-icons/si";
 
-const EarthMesh = ({ onProjectClick, onCareerClick, onSkillsClick }: { 
+const EarthMesh = ({ 
+  onProjectClick, 
+  onCareerClick, 
+  onSkillsClick,
+  isAnyModalOpen
+}: { 
   onProjectClick: () => void;
   onCareerClick: () => void;
   onSkillsClick: () => void;
+  isAnyModalOpen: boolean;
 }) => {
   const earthTexture = useLoader(THREE.TextureLoader, "./textures/earth.png");
   const cloudsTexture = useLoader(THREE.TextureLoader, "./textures/cloud3.jpg");
 
   const earthRef = useRef<THREE.Mesh>(null);
   const cloudsRef = useRef<THREE.Mesh>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useFrame(() => {
     if (earthRef.current) earthRef.current.rotation.y += 0.0002;
     if (cloudsRef.current) cloudsRef.current.rotation.y += 0.0003;
   });
+
+  const getHtmlPosition = (index: number) => {
+    if (isMobile) {
+      return [0, 2 - index, 0];
+    }
+    return [-5.1, 2 - index, 0];
+  };
 
   return (
     <>
@@ -35,72 +60,108 @@ const EarthMesh = ({ onProjectClick, onCareerClick, onSkillsClick }: {
       </Sphere>
 
       {/* Career */}
-      <Html position={[-4.85, 0, 0]} center>
-        <div style={{ 
-          color: "white", 
-          fontSize: "20px", 
-          fontWeight: "bold",
-          width: "100px",
-          textAlign: "left"
-        }}>
-          <a href="#" style={{ color: "white", textDecoration: "none" }} onClick={onCareerClick}>
-            Career
-          </a>
-        </div>
-      </Html>
+      {(!isAnyModalOpen || !isMobile) && (
+        <Html position={getHtmlPosition(0)} center>
+          <div style={{ 
+            color: "white", 
+            fontSize: isMobile ? "16px" : "20px",
+            fontWeight: "bold",
+            width: isMobile ? "80px" : "100px",
+            textAlign: isMobile ? "center" : "left"
+          }}>
+            <a href="#" style={{ color: "white", textDecoration: "none" }} onClick={onCareerClick}>
+              Career
+            </a>
+          </div>
+        </Html>
+      )}
 
       {/* Project */}
-      <Html position={[-5.1, 2, 0]} center>
-        <div style={{ color: "white", fontSize: "20px", fontWeight: "bold" }} onClick={onProjectClick}>
-          <a href="#" style={{ color: "white", textDecoration: "none" }}>
-            Projects
-          </a>
-        </div>
-      </Html>
+      {(!isAnyModalOpen || !isMobile) && (
+        <Html position={getHtmlPosition(1)} center>
+          <div style={{ 
+            color: "white", 
+            fontSize: isMobile ? "16px" : "20px",
+            fontWeight: "bold",
+            width: isMobile ? "80px" : "100px",
+            textAlign: isMobile ? "center" : "left"
+          }} onClick={onProjectClick}>
+            <a href="#" style={{ color: "white", textDecoration: "none" }}>
+              Projects
+            </a>
+          </div>
+        </Html>
+      )}
 
       {/* Skills */}
-      <Html position={[-5.15, 1, 0]} center>
-        <div style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}>
-          <a href="#" style={{ color: "white", textDecoration: "none" }} onClick={onSkillsClick}>
-            Skills
-          </a>
-        </div>
-      </Html>
+      {(!isAnyModalOpen || !isMobile) && (
+        <Html position={getHtmlPosition(2)} center>
+          <div style={{ 
+            color: "white", 
+            fontSize: isMobile ? "16px" : "20px",
+            fontWeight: "bold",
+            width: isMobile ? "80px" : "100px",
+            textAlign: isMobile ? "center" : "left"
+          }}>
+            <a href="#" style={{ color: "white", textDecoration: "none" }} onClick={onSkillsClick}>
+              Skills
+            </a>
+          </div>
+        </Html>
+      )}
       
-      {/* 言語切り替えボタン */}
-
-<Html position={[-4.7, -3, 0]} center>
-  <div style={{ display: "flex", gap: "10px" }}>
-    <a
-      href="https://github.com/hirakei1203"
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{ color: "white", fontSize: "24px" }}
-    >
-      <FaGithub />
-    </a>
-    <a
-      href="https://www.linkedin.com/in/keitaro-hirano-340164191/"
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{ color: "white", fontSize: "24px" }}
-    >
-      <FaLinkedin />
-    </a>
-    <a
-      href="mailto:hirano.keitaro.64x@gmail.com"
-      style={{ color: "white", fontSize: "24px" }}
-    >
-      <FaEnvelope />
-    </a>
-  </div>
-</Html>
-
+      {/* Social Links */}
+      {(!isAnyModalOpen || !isMobile) && (
+        <Html position={isMobile ? [0, -3, 0] : [-4.7, -3, 0]} center>
+          <div style={{ 
+            display: "flex", 
+            gap: isMobile ? "5px" : "10px",
+            fontSize: isMobile ? "20px" : "24px",
+            justifyContent: isMobile ? "center" : "flex-start"
+          }}>
+            <a
+              href="https://github.com/hirakei1203"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "white" }}
+            >
+              <FaGithub />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/keitaro-hirano-340164191/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "white" }}
+            >
+              <FaLinkedin />
+            </a>
+            <a
+              href="mailto:hirano.keitaro.64x@gmail.com"
+              style={{ color: "white" }}
+            >
+              <FaEnvelope />
+            </a>
+          </div>
+        </Html>
+      )}
     </>
   );
 };
 
 const ProjectCards = ({ onClose }: { onClose: () => void }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const projects = [
     { 
       name: "Vancouver Information Map", 
@@ -114,20 +175,22 @@ const ProjectCards = ({ onClose }: { onClose: () => void }) => {
     <div
       style={{
         position: "fixed",
-        top: "5%",
-        right: "5%",
-        width: "40%",
-        height: "85%",
+        top: isMobile ? "0" : "5%",
+        left: isMobile ? "0" : "auto",
+        right: isMobile ? "0" : "5%",
+        width: isMobile ? "100%" : "40%",
+        height: isMobile ? "100%" : "85%",
         background: "rgba(255, 255, 255, 0.1)",
         backdropFilter: "blur(10px)",
-        borderRadius: "15px",
-        padding: "20px",
+        borderRadius: isMobile ? "0" : "15px",
+        padding: isMobile ? "20px 10px" : "20px",
         display: "flex",
         flexDirection: "column",
         gap: "20px",
         justifyContent: "flex-start",
         alignItems: "center",
-        overflowY: "auto"
+        overflowY: "auto",
+        zIndex: 1000
       }}
     >
       <button
@@ -203,6 +266,19 @@ const ProjectCards = ({ onClose }: { onClose: () => void }) => {
 };
 
 const CareerCards = ({ onClose }: { onClose: () => void }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const jobs = [
     { name: "Marketing Automation Tool (Japanese)", icon: <FaBullhorn size={32} />, url: "https://www.kairosmarketing.net/kairos3" },
     { name: "Scheduling Tool (Japanese)", icon: <FaCalendarAlt size={32} />, url: "https://www.kairosmarketing.net/timing" },
@@ -218,20 +294,22 @@ const CareerCards = ({ onClose }: { onClose: () => void }) => {
     <div
       style={{
         position: "fixed",
-        top: "5%",
-        right: "5%",
-        width: "40%",
-        height: "85%",
+        top: isMobile ? "0" : "5%",
+        left: isMobile ? "0" : "auto",
+        right: isMobile ? "0" : "5%",
+        width: isMobile ? "100%" : "40%",
+        height: isMobile ? "100%" : "85%",
         background: "rgba(255, 255, 255, 0.1)",
         backdropFilter: "blur(10px)",
-        borderRadius: "15px",
-        padding: "20px",
+        borderRadius: isMobile ? "0" : "15px",
+        padding: isMobile ? "20px 10px" : "20px",
         display: "flex",
         flexDirection: "column",
         gap: "20px",
         justifyContent: "flex-start",
         alignItems: "center",
-        overflowY: "auto"
+        overflowY: "auto",
+        zIndex: 1000
       }}
     >
       <button
@@ -355,6 +433,19 @@ const CareerCards = ({ onClose }: { onClose: () => void }) => {
 };
 
 const SkillsCards = ({ onClose }: { onClose: () => void }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const skillsWithIcons = [
     { name: "PHP", icon: <SiPhp size={32} /> },
     { name: "Laravel", icon: <SiLaravel size={32} /> },
@@ -362,7 +453,7 @@ const SkillsCards = ({ onClose }: { onClose: () => void }) => {
     { name: "jQuery", icon: <SiJquery size={32} /> },
     { name: "Flutter", icon: <SiFlutter size={32} /> },
     { name: "AWS", icon: <FaAws size={32} /> },
-    { name: "DDD", icon: <FaLayerGroup size={32} /> },
+    { name: "DDD", icon: <FaCube size={32} /> },
     { name: "AI Coding", icon: <FaMicrochip size={32} /> },
     { name: "Restful API", icon: <FaCode size={32} /> }
   ];
@@ -382,20 +473,22 @@ const SkillsCards = ({ onClose }: { onClose: () => void }) => {
     <div
       style={{
         position: "fixed",
-        top: "5%",
-        right: "5%",
-        width: "40%",
-        height: "85%",
+        top: isMobile ? "0" : "5%",
+        left: isMobile ? "0" : "auto",
+        right: isMobile ? "0" : "5%",
+        width: isMobile ? "100%" : "40%",
+        height: isMobile ? "100%" : "85%",
         background: "rgba(255, 255, 255, 0.1)",
         backdropFilter: "blur(10px)",
-        borderRadius: "15px",
-        padding: "20px",
+        borderRadius: isMobile ? "0" : "15px",
+        padding: isMobile ? "20px 10px" : "20px",
         display: "flex",
         flexDirection: "column",
         gap: "20px",
         justifyContent: "flex-start",
         alignItems: "center",
-        overflowY: "auto"
+        overflowY: "auto",
+        zIndex: 1000
       }}
     >
       <button
@@ -534,6 +627,8 @@ const Earth = () => {
   const [showCareer, setShowCareer] = useState(false);
   const [showSkills, setShowSkills] = useState(false);
 
+  const isAnyModalOpen = showProjects || showCareer || showSkills;
+
   const toggleProjects = () => {
     setShowProjects(prev => !prev);
     if (!showProjects) {
@@ -577,6 +672,7 @@ const Earth = () => {
           onProjectClick={toggleProjects}
           onCareerClick={toggleCareer}
           onSkillsClick={toggleSkills}
+          isAnyModalOpen={isAnyModalOpen}
         />
         <OrbitControls target={[0, 0, 0]} />
       </Canvas>
