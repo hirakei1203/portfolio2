@@ -3,7 +3,7 @@ import { OrbitControls, Sphere, Stars, Html } from "@react-three/drei";
 import * as THREE from "three";
 import { useRef, useState } from "react";
 import ShootingStars from "./ShootingStars";
-import { FaGithub, FaLinkedin, FaTimes, FaAws, FaCalculator, FaChartLine, FaLanguage, FaCertificate, FaGraduationCap, FaMobileAlt, FaCalendarAlt, FaBullhorn, FaExternalLinkAlt } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTimes, FaAws, FaCalculator, FaChartLine, FaLanguage, FaCertificate, FaGraduationCap, FaMobileAlt, FaCalendarAlt, FaBullhorn, FaExternalLinkAlt, FaLayerGroup, FaCode, FaSync, FaMicrochip } from "react-icons/fa";
 import { SiPhp, SiLaravel, SiVuedotjs, SiJquery, SiFlutter } from "react-icons/si";
 
 const EarthMesh = ({ onProjectClick, onCareerClick, onSkillsClick }: { 
@@ -203,6 +203,11 @@ const CareerCards = ({ onClose }: { onClose: () => void }) => {
     { name: "Sales Force Automation Mobile App (Japanese)", icon: <FaMobileAlt size={32} />, url: "https://www.kairosmarketing.net/sales/features/sfa-app" }
   ];
 
+  const universities = [
+    { name: "Kyoto University", major: "Master of Biochemistry" },
+    { name: "University Canada West", major: "Master of Business Administration" }
+  ];
+
   return (
     <div
       style={{
@@ -299,6 +304,46 @@ const CareerCards = ({ onClose }: { onClose: () => void }) => {
           );
         })}
       </div>
+
+      <h2 style={{ 
+        color: "white", 
+        marginBottom: "10px", 
+        marginTop: "20px",
+        width: "90%",
+        textAlign: "left"
+      }}>Education</h2>
+      <div style={{ 
+        display: "grid", 
+        gridTemplateColumns: "1fr", 
+        gap: "20px",
+        width: "90%"
+      }}>
+        {universities.map((university) => (
+          <div 
+            key={university.name}
+            style={{
+              background: "rgba(255, 255, 255, 0.15)", 
+              padding: "15px",
+              borderRadius: "10px",
+              color: "white",
+              fontSize: "18px",
+              fontWeight: "bold",
+              display: "flex",
+              flexDirection: "column",
+              gap: "5px"
+            }}
+          >
+            <div>{university.name}</div>
+            <div style={{ 
+              fontSize: "16px", 
+              fontWeight: "normal",
+              opacity: 0.8 
+            }}>
+              {university.major}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
@@ -310,7 +355,10 @@ const SkillsCards = ({ onClose }: { onClose: () => void }) => {
     { name: "Vue.js", icon: <SiVuedotjs size={32} /> },
     { name: "jQuery", icon: <SiJquery size={32} /> },
     { name: "Flutter", icon: <SiFlutter size={32} /> },
-    { name: "AWS", icon: <FaAws size={32} /> }
+    { name: "AWS", icon: <FaAws size={32} /> },
+    { name: "DDD", icon: <FaLayerGroup size={32} /> },
+    { name: "AI Coding", icon: <FaMicrochip size={32} /> },
+    { name: "Restful API", icon: <FaCode size={32} /> }
   ];
 
   const crossDomainSkills = [
@@ -369,26 +417,36 @@ const SkillsCards = ({ onClose }: { onClose: () => void }) => {
         gap: "20px",
         width: "90%"
       }}>
-        {skillsWithIcons.map((skill) => (
-          <div 
-            key={skill.name}
-            style={{
-              background: "rgba(255, 255, 255, 0.15)", 
-              padding: "15px",
-              borderRadius: "10px",
-              textAlign: "center",
-              color: "white",
-              fontSize: "18px",
-              fontWeight: "bold",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: "10px"
-            }}
-          >
-            {skill.icon}
-            {skill.name}
-          </div>
+        {skillsWithIcons.map((skill, index) => (
+          <>
+            <div 
+              key={skill.name}
+              style={{
+                background: "rgba(255, 255, 255, 0.15)", 
+                padding: "15px",
+                borderRadius: "10px",
+                textAlign: "center",
+                color: "white",
+                fontSize: "18px",
+                fontWeight: "bold",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "10px"
+              }}
+            >
+              {skill.icon}
+              {skill.name}
+            </div>
+            {(index + 1) % 6 === 0 && index !== skillsWithIcons.length - 1 && (
+              <div style={{ 
+                gridColumn: "1 / -1", 
+                height: "1px", 
+                background: "rgba(255, 255, 255, 0.2)",
+                margin: "10px 0"
+              }} />
+            )}
+          </>
         ))}
       </div>
       
