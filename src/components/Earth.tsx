@@ -3,7 +3,7 @@ import { OrbitControls, Sphere, Stars, Html } from "@react-three/drei";
 import * as THREE from "three";
 import { useRef, useState } from "react";
 import ShootingStars from "./ShootingStars";
-import { FaGithub, FaLinkedin, FaTimes, FaAws, FaCalculator, FaChartLine, FaLanguage, FaCertificate, FaGraduationCap, FaMobileAlt, FaCalendarAlt, FaBullhorn, FaExternalLinkAlt, FaLayerGroup, FaCode, FaSync, FaMicrochip } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTimes, FaAws, FaCalculator, FaChartLine, FaLanguage, FaCertificate, FaGraduationCap, FaMobileAlt, FaCalendarAlt, FaBullhorn, FaExternalLinkAlt, FaLayerGroup, FaCode, FaSync, FaMicrochip, FaEnvelope } from "react-icons/fa";
 import { SiPhp, SiLaravel, SiVuedotjs, SiJquery, SiFlutter } from "react-icons/si";
 
 const EarthMesh = ({ onProjectClick, onCareerClick, onSkillsClick }: { 
@@ -86,6 +86,12 @@ const EarthMesh = ({ onProjectClick, onCareerClick, onSkillsClick }: {
       style={{ color: "white", fontSize: "24px" }}
     >
       <FaLinkedin />
+    </a>
+    <a
+      href="mailto:hirano.keitaro.64x@gmail.com"
+      style={{ color: "white", fontSize: "24px" }}
+    >
+      <FaEnvelope />
     </a>
   </div>
 </Html>
