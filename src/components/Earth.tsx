@@ -198,7 +198,7 @@ const ProjectCards = ({ onClose }: { onClose: () => void }) => {
 
 const CareerCards = ({ onClose }: { onClose: () => void }) => {
   const jobs = [
-    { name: "Marketing Automation Tool", icon: <FaBullhorn size={32} /> },
+    { name: "Marketing Automation Tool", icon: <FaBullhorn size={32} />, url: "https://www.kairosmarketing.net/kairos3" },
     { name: "Scheduling Tool", icon: <FaCalendarAlt size={32} /> },
     { name: "Sales Force Automation Application (Mobile)", icon: <FaMobileAlt size={32} /> }
   ];
@@ -276,7 +276,7 @@ const CareerCards = ({ onClose }: { onClose: () => void }) => {
             >
               {job.icon}
               <a 
-                href="#" 
+                href={job.url || "#"} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 onMouseEnter={() => setIsHovered(true)}
