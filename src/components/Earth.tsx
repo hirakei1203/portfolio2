@@ -199,8 +199,8 @@ const ProjectCards = ({ onClose }: { onClose: () => void }) => {
 const CareerCards = ({ onClose }: { onClose: () => void }) => {
   const jobs = [
     { name: "Marketing Automation Tool", icon: <FaBullhorn size={32} />, url: "https://www.kairosmarketing.net/kairos3" },
-    { name: "Scheduling Tool", icon: <FaCalendarAlt size={32} /> },
-    { name: "Sales Force Automation Application (Mobile)", icon: <FaMobileAlt size={32} /> }
+    { name: "Scheduling Tool", icon: <FaCalendarAlt size={32} />, url: "https://www.kairosmarketing.net/timing" },
+    { name: "Sales Force Automation Application (Mobile)", icon: <FaMobileAlt size={32} />, url: "https://www.kairosmarketing.net/sales/features/sfa-app" }
   ];
 
   return (
