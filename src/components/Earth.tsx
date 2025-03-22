@@ -40,11 +40,11 @@ const EarthMesh = ({
     if (cloudsRef.current) cloudsRef.current.rotation.y += 0.0003;
   });
 
-  const getHtmlPosition = (index: number) => {
+  const getHtmlPosition = (index: number, xPosition?: number) => {
     if (isMobile) {
       return [0, 2 - index, 0];
     }
-    return [-5.1, 2 - index, 0];
+    return [xPosition !== undefined ? xPosition : -2, 2 - index, 0];
   };
 
   return (
@@ -61,7 +61,7 @@ const EarthMesh = ({
 
       {/* Career */}
       {(!isAnyModalOpen || !isMobile) && (
-        <Html position={getHtmlPosition(0)} center>
+        <Html position={getHtmlPosition(2, -4.25)} center>
           <div style={{ 
             color: "white", 
             fontSize: isMobile ? "16px" : "20px",
@@ -78,7 +78,7 @@ const EarthMesh = ({
 
       {/* Project */}
       {(!isAnyModalOpen || !isMobile) && (
-        <Html position={getHtmlPosition(1)} center>
+        <Html position={getHtmlPosition(1, -4.34)} center>
           <div style={{ 
             color: "white", 
             fontSize: isMobile ? "16px" : "20px",
@@ -95,7 +95,7 @@ const EarthMesh = ({
 
       {/* Skills */}
       {(!isAnyModalOpen || !isMobile) && (
-        <Html position={getHtmlPosition(2)} center>
+        <Html position={getHtmlPosition(0, -4.4)} center>
           <div style={{ 
             color: "white", 
             fontSize: isMobile ? "16px" : "20px",
@@ -112,7 +112,7 @@ const EarthMesh = ({
       
       {/* Social Links */}
       {(!isAnyModalOpen || !isMobile) && (
-        <Html position={isMobile ? [0, -3, 0] : [-4.7, -3, 0]} center>
+        <Html position={isMobile ? [0, -3, 0] : [-4, -3, 0]} center>
           <div style={{ 
             display: "flex", 
             gap: isMobile ? "5px" : "10px",
