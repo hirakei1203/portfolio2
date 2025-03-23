@@ -3,7 +3,7 @@ import { OrbitControls, Sphere, Stars, Html } from "@react-three/drei";
 import * as THREE from "three";
 import { useRef, useState, useEffect, Fragment, cloneElement, ReactElement } from "react";
 import ShootingStars from "./ShootingStars";
-import { FaGithub, FaLinkedin, FaTimes, FaAws, FaCalculator, FaChartLine, FaLanguage, FaCertificate, FaGraduationCap, FaMobileAlt, FaCalendarAlt, FaBullhorn, FaExternalLinkAlt, FaCode, FaSync, FaMicrochip, FaEnvelope, FaCube } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTimes, FaAws, FaCalculator, FaChartLine, FaLanguage, FaCertificate, FaGraduationCap, FaMobileAlt, FaCalendarAlt, FaBullhorn, FaExternalLinkAlt, FaCode, FaSync, FaMicrochip, FaEnvelope, FaCube, FaSpinner, FaHammer, FaTools, FaHardHat } from "react-icons/fa";
 import { SiPhp, SiLaravel, SiVuedotjs, SiJquery, SiFlutter } from "react-icons/si";
 
 const EarthMesh = ({ 
@@ -259,9 +259,24 @@ const ProjectCards = ({ onClose }: { onClose: () => void }) => {
               backgroundColor: "rgba(255, 255, 255, 0.1)",
               padding: "5px 10px",
               borderRadius: "5px",
-              display: "inline-block",
+              display: "inline-flex",
+              alignItems: "center",
               color: "rgba(255, 255, 255, 0.9)"
             }}>
+              <FaHammer 
+                style={{ 
+                  marginRight: "8px",
+                  animation: "hammer 1.5s ease-in-out infinite"
+                }} 
+              />
+              <style>{`
+                @keyframes hammer {
+                  0% { transform: rotate(0deg); }
+                  30% { transform: rotate(-30deg); }
+                  60% { transform: rotate(0deg); }
+                  100% { transform: rotate(0deg); }
+                }
+              `}</style>
               {project.status}
             </div>
           </div>
