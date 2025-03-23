@@ -3,18 +3,20 @@ import { OrbitControls, Sphere, Stars, Html } from "@react-three/drei";
 import * as THREE from "three";
 import { useRef, useState, useEffect, Fragment, cloneElement, ReactElement } from "react";
 import ShootingStars from "./ShootingStars";
-import { FaGithub, FaLinkedin, FaTimes, FaAws, FaCalculator, FaChartLine, FaLanguage, FaCertificate, FaGraduationCap, FaMobileAlt, FaCalendarAlt, FaBullhorn, FaExternalLinkAlt, FaCode, FaSync, FaMicrochip, FaEnvelope, FaCube, FaSpinner, FaHammer, FaTools, FaHardHat } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTimes, FaAws, FaCalculator, FaChartLine, FaLanguage, FaCertificate, FaGraduationCap, FaMobileAlt, FaCalendarAlt, FaBullhorn, FaExternalLinkAlt, FaCode, FaSync, FaMicrochip, FaEnvelope, FaCube, FaSpinner, FaHammer, FaTools, FaHardHat, FaUserAlt, FaMapMarkerAlt, FaLaptopCode } from "react-icons/fa";
 import { SiPhp, SiLaravel, SiVuedotjs, SiJquery, SiFlutter } from "react-icons/si";
 
 const EarthMesh = ({ 
   onProjectClick, 
   onCareerClick, 
   onSkillsClick,
+  onIntroductionClick,
   isAnyModalOpen
 }: { 
   onProjectClick: () => void;
   onCareerClick: () => void;
   onSkillsClick: () => void;
+  onIntroductionClick: () => void;
   isAnyModalOpen: boolean;
 }) => {
   const earthTexture = useLoader(THREE.TextureLoader, "./textures/earth.png");
@@ -64,6 +66,23 @@ const EarthMesh = ({
       <Sphere ref={cloudsRef} args={[4.02, 128, 128]} position={[2, -2, 0]}>
         <meshStandardMaterial map={cloudsTexture} transparent opacity={0.35} />
       </Sphere>
+
+      {/* Introduction */}
+      {(!isAnyModalOpen || (!isMobile && !isTablet)) && (
+        <Html position={getHtmlPosition(3, -4.2)} center>
+          <div style={{ 
+            color: "white", 
+            fontSize: isMobile ? "16px" : isTablet ? "18px" : "20px",
+            fontWeight: "bold",
+            width: isMobile ? "80px" : isTablet ? "90px" : "100px",
+            textAlign: (isMobile || isTablet) ? "center" : "left"
+          }}>
+            <a href="#" style={{ color: "white", textDecoration: "none" }} onClick={onIntroductionClick}>
+              Introduction
+            </a>
+          </div>
+        </Html>
+      )}
 
       {/* Career */}
       {(!isAnyModalOpen || (!isMobile && !isTablet)) && (
@@ -678,18 +697,176 @@ const SkillsCards = ({ onClose }: { onClose: () => void }) => {
   );
 };
 
+const IntroductionCards = ({ onClose }: { onClose: () => void }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  return (
+    <div
+      style={{
+        position: "fixed",
+        top: isMobile ? "0" : "5%",
+        left: isMobile ? "0" : "auto",
+        right: isMobile ? "0" : "5%",
+        width: isMobile ? "100%" : "40%",
+        height: isMobile ? "100%" : "85%",
+        background: "rgba(255, 255, 255, 0.1)",
+        backdropFilter: "blur(10px)",
+        borderRadius: isMobile ? "0" : "15px",
+        padding: isMobile ? "20px 10px" : "20px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        overflowY: "auto",
+        zIndex: 1000
+      }}
+    >
+      <button
+        onClick={onClose}
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "10px",
+          background: "transparent",
+          color: "white",
+          border: "none",
+          borderRadius: "50%",
+          width: "24px",
+          height: "24px",
+          cursor: "pointer",
+        }}
+      >
+        <FaTimes size={14} />
+      </button>
+      
+      <h2 style={{ 
+        color: "white", 
+        marginBottom: "10px", 
+        marginTop: "10px",
+        width: "90%",
+        textAlign: "left"
+      }}>自己紹介 / About Me</h2>
+      
+      <div style={{ 
+        display: "flex", 
+        flexDirection: "column",
+        gap: "20px",
+        width: "90%"
+      }}>
+        <div style={{
+          background: "rgba(255, 255, 255, 0.15)", 
+          padding: "20px",
+          borderRadius: "10px",
+          color: "white",
+        }}>
+          <div style={{ 
+            display: "flex", 
+            alignItems: "center", 
+            marginBottom: "15px",
+            gap: "15px"
+          }}>
+            <div style={{ 
+              background: "#4285F4", 
+              borderRadius: "50%", 
+              padding: "10px" 
+            }}>
+              <FaUserAlt size={24} color="white" />
+            </div>
+            <h3 style={{ margin: 0 }}>平野 啓太郎 / Keitaro Hirano</h3>
+          </div>
+          <p style={{ lineHeight: "1.6", margin: "0 0 15px 0" }}>
+            バンクーバー在住のウェブエンジニアです。企業向けSaaSの開発とAI技術の活用に情熱を持っています。
+          </p>
+          <p style={{ lineHeight: "1.6", margin: "0 0 15px 0" }}>
+            Web engineer based in Vancouver. Passionate about developing business SaaS applications and utilizing AI technologies.
+          </p>
+        </div>
+
+        <div style={{
+          background: "rgba(255, 255, 255, 0.15)", 
+          padding: "20px",
+          borderRadius: "10px",
+          color: "white",
+        }}>
+          <div style={{ 
+            display: "flex", 
+            alignItems: "center", 
+            marginBottom: "15px",
+            gap: "15px"
+          }}>
+            <div style={{ 
+              background: "#0F9D58", 
+              borderRadius: "50%", 
+              padding: "10px" 
+            }}>
+              <FaMapMarkerAlt size={24} color="white" />
+            </div>
+            <h3 style={{ margin: 0 }}>ロケーション / Location</h3>
+          </div>
+          <p style={{ lineHeight: "1.6", margin: "0" }}>
+            カナダ・バンクーバー / Vancouver, Canada
+          </p>
+        </div>
+
+        <div style={{
+          background: "rgba(255, 255, 255, 0.15)", 
+          padding: "20px",
+          borderRadius: "10px",
+          color: "white",
+        }}>
+          <div style={{ 
+            display: "flex", 
+            alignItems: "center", 
+            marginBottom: "15px",
+            gap: "15px"
+          }}>
+            <div style={{ 
+              background: "#DB4437", 
+              borderRadius: "50%", 
+              padding: "10px" 
+            }}>
+              <FaLaptopCode size={24} color="white" />
+            </div>
+            <h3 style={{ margin: 0 }}>専門分野 / Specialization</h3>
+          </div>
+          <p style={{ lineHeight: "1.6", margin: "0" }}>
+            バックエンド開発、クラウドアーキテクチャ、AIツール活用、ドメイン駆動設計
+          </p>
+          <p style={{ lineHeight: "1.6", margin: "0" }}>
+            Backend development, Cloud architecture, AI tool utilization, Domain-Driven Design
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Earth = () => {
   const [showProjects, setShowProjects] = useState(false);
   const [showCareer, setShowCareer] = useState(false);
   const [showSkills, setShowSkills] = useState(false);
+  const [showIntroduction, setShowIntroduction] = useState(false);
 
-  const isAnyModalOpen = showProjects || showCareer || showSkills;
+  const isAnyModalOpen = showProjects || showCareer || showSkills || showIntroduction;
 
   const toggleProjects = () => {
     setShowProjects(prev => !prev);
     if (!showProjects) {
       setShowCareer(false);
       setShowSkills(false);
+      setShowIntroduction(false);
     }
   };
 
@@ -698,6 +875,7 @@ const Earth = () => {
     if (!showCareer) {
       setShowProjects(false);
       setShowSkills(false);
+      setShowIntroduction(false);
     }
   };
 
@@ -706,6 +884,16 @@ const Earth = () => {
     if (!showSkills) {
       setShowProjects(false);
       setShowCareer(false);
+      setShowIntroduction(false);
+    }
+  };
+
+  const toggleIntroduction = () => {
+    setShowIntroduction(prev => !prev);
+    if (!showIntroduction) {
+      setShowProjects(false);
+      setShowCareer(false);
+      setShowSkills(false);
     }
   };
 
@@ -728,6 +916,7 @@ const Earth = () => {
           onProjectClick={toggleProjects}
           onCareerClick={toggleCareer}
           onSkillsClick={toggleSkills}
+          onIntroductionClick={toggleIntroduction}
           isAnyModalOpen={isAnyModalOpen}
         />
         <OrbitControls target={[0, 0, 0]} />
@@ -736,6 +925,7 @@ const Earth = () => {
       {showProjects && <ProjectCards onClose={toggleProjects} />}
       {showCareer && <CareerCards onClose={toggleCareer} />}
       {showSkills && <SkillsCards onClose={toggleSkills} />}
+      {showIntroduction && <IntroductionCards onClose={toggleIntroduction} />}
     </div>
   );
 };
