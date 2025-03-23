@@ -23,16 +23,19 @@ const EarthMesh = ({
   const earthRef = useRef<THREE.Mesh>(null);
   const cloudsRef = useRef<THREE.Mesh>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+    const checkDeviceSize = () => {
+      const width = window.innerWidth;
+      setIsMobile(width < 768);
+      setIsTablet(width >= 768 && width < 1024);
     };
 
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
+    checkDeviceSize();
+    window.addEventListener('resize', checkDeviceSize);
 
-    return () => window.removeEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkDeviceSize);
   }, []);
 
   useFrame(() => {
@@ -41,10 +44,13 @@ const EarthMesh = ({
   });
 
   const getHtmlPosition = (index: number, xPosition?: number) => {
-    if (isMobile) {
+    if (isMobile || isTablet) {
+      // モバイルとタブレットサイズの場合は中央に配置
       return [0, 2 - index, 0];
+    } else {
+      // PCサイズの場合
+      return [xPosition !== undefined ? xPosition : -2, 2 - index, 0];
     }
-    return [xPosition !== undefined ? xPosition : -2, 2 - index, 0];
   };
 
   return (
@@ -60,14 +66,14 @@ const EarthMesh = ({
       </Sphere>
 
       {/* Career */}
-      {(!isAnyModalOpen || !isMobile) && (
+      {(!isAnyModalOpen || (!isMobile && !isTablet)) && (
         <Html position={getHtmlPosition(2, -4.25)} center>
           <div style={{ 
             color: "white", 
-            fontSize: isMobile ? "16px" : "20px",
+            fontSize: isMobile ? "16px" : isTablet ? "18px" : "20px",
             fontWeight: "bold",
-            width: isMobile ? "80px" : "100px",
-            textAlign: isMobile ? "center" : "left"
+            width: isMobile ? "80px" : isTablet ? "90px" : "100px",
+            textAlign: (isMobile || isTablet) ? "center" : "left"
           }}>
             <a href="#" style={{ color: "white", textDecoration: "none" }} onClick={onCareerClick}>
               Career
@@ -77,14 +83,14 @@ const EarthMesh = ({
       )}
 
       {/* Project */}
-      {(!isAnyModalOpen || !isMobile) && (
+      {(!isAnyModalOpen || (!isMobile && !isTablet)) && (
         <Html position={getHtmlPosition(1, -4.34)} center>
           <div style={{ 
             color: "white", 
-            fontSize: isMobile ? "16px" : "20px",
+            fontSize: isMobile ? "16px" : isTablet ? "18px" : "20px",
             fontWeight: "bold",
-            width: isMobile ? "80px" : "100px",
-            textAlign: isMobile ? "center" : "left"
+            width: isMobile ? "80px" : isTablet ? "90px" : "100px",
+            textAlign: (isMobile || isTablet) ? "center" : "left"
           }} onClick={onProjectClick}>
             <a href="#" style={{ color: "white", textDecoration: "none" }}>
               Projects
@@ -94,14 +100,14 @@ const EarthMesh = ({
       )}
 
       {/* Skills */}
-      {(!isAnyModalOpen || !isMobile) && (
+      {(!isAnyModalOpen || (!isMobile && !isTablet)) && (
         <Html position={getHtmlPosition(0, -4.4)} center>
           <div style={{ 
             color: "white", 
-            fontSize: isMobile ? "16px" : "20px",
+            fontSize: isMobile ? "16px" : isTablet ? "18px" : "20px",
             fontWeight: "bold",
-            width: isMobile ? "80px" : "100px",
-            textAlign: isMobile ? "center" : "left"
+            width: isMobile ? "80px" : isTablet ? "90px" : "100px",
+            textAlign: (isMobile || isTablet) ? "center" : "left"
           }}>
             <a href="#" style={{ color: "white", textDecoration: "none" }} onClick={onSkillsClick}>
               Skills
@@ -111,13 +117,13 @@ const EarthMesh = ({
       )}
       
       {/* Social Links */}
-      {(!isAnyModalOpen || !isMobile) && (
-        <Html position={isMobile ? [0, -3, 0] : [-4, -3, 0]} center>
+      {(!isAnyModalOpen || (!isMobile && !isTablet)) && (
+        <Html position={isMobile || isTablet ? [0, -3, 0] : [-4, -3, 0]} center>
           <div style={{ 
             display: "flex", 
-            gap: isMobile ? "5px" : "10px",
-            fontSize: isMobile ? "20px" : "24px",
-            justifyContent: isMobile ? "center" : "flex-start"
+            gap: isMobile ? "5px" : isTablet ? "8px" : "10px",
+            fontSize: isMobile ? "20px" : isTablet ? "22px" : "24px",
+            justifyContent: (isMobile || isTablet) ? "center" : "flex-start"
           }}>
             <a
               href="https://github.com/hirakei1203"
