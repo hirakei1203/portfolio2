@@ -148,7 +148,9 @@ const EarthMesh = ({
               href="https://github.com/hirakei1203"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "white" }}
+              style={{ color: "white", transition: "color 0.3s" }}
+              onMouseOver={(e) => e.currentTarget.style.color = "#2ea44f"}
+              onMouseOut={(e) => e.currentTarget.style.color = "white"}
             >
               <FaGithub />
             </a>
@@ -156,13 +158,17 @@ const EarthMesh = ({
               href="https://www.linkedin.com/in/keitaro-hirano-340164191/"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "white" }}
+              style={{ color: "white", transition: "color 0.3s" }}
+              onMouseOver={(e) => e.currentTarget.style.color = "#0077b5"}
+              onMouseOut={(e) => e.currentTarget.style.color = "white"}
             >
               <FaLinkedin />
             </a>
             <a
               href="mailto:hirano.keitaro.64x@gmail.com"
-              style={{ color: "white" }}
+              style={{ color: "white", transition: "color 0.3s" }}
+              onMouseOver={(e) => e.currentTarget.style.color = "#ff9800"}
+              onMouseOut={(e) => e.currentTarget.style.color = "white"}
             >
               <FaEnvelope />
             </a>
