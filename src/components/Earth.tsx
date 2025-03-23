@@ -1,7 +1,7 @@
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { OrbitControls, Sphere, Stars, Html } from "@react-three/drei";
 import * as THREE from "three";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, Fragment, cloneElement, ReactElement } from "react";
 import ShootingStars from "./ShootingStars";
 import { FaGithub, FaLinkedin, FaTimes, FaAws, FaCalculator, FaChartLine, FaLanguage, FaCertificate, FaGraduationCap, FaMobileAlt, FaCalendarAlt, FaBullhorn, FaExternalLinkAlt, FaCode, FaSync, FaMicrochip, FaEnvelope, FaCube } from "react-icons/fa";
 import { SiPhp, SiLaravel, SiVuedotjs, SiJquery, SiFlutter } from "react-icons/si";
@@ -453,26 +453,26 @@ const SkillsCards = ({ onClose }: { onClose: () => void }) => {
   }, []);
 
   const skillsWithIcons = [
-    { name: "PHP", icon: <SiPhp size={32} /> },
-    { name: "Laravel", icon: <SiLaravel size={32} /> },
-    { name: "Vue.js", icon: <SiVuedotjs size={32} /> },
-    { name: "jQuery", icon: <SiJquery size={32} /> },
-    { name: "Flutter", icon: <SiFlutter size={32} /> },
-    { name: "AWS", icon: <FaAws size={32} /> },
-    { name: "DDD", icon: <FaCube size={32} /> },
-    { name: "AI Coding", icon: <FaMicrochip size={32} /> },
-    { name: "Restful API", icon: <FaCode size={32} /> }
+    { name: "PHP", icon: <SiPhp size={32} />, color: "#8892BF" },
+    { name: "Laravel", icon: <SiLaravel size={32} />, color: "#FF2D20" },
+    { name: "Vue.js", icon: <SiVuedotjs size={32} />, color: "#42B883" },
+    { name: "jQuery", icon: <SiJquery size={32} />, color: "#0769AD" },
+    { name: "Flutter", icon: <SiFlutter size={32} />, color: "#02569B" },
+    { name: "AWS", icon: <FaAws size={32} />, color: "#FF9900" },
+    { name: "DDD", icon: <FaCube size={32} />, color: "#5C85D6" },
+    { name: "AI Coding", icon: <FaMicrochip size={32} />, color: "#00AEEF" },
+    { name: "Restful API", icon: <FaCode size={32} />, color: "#61DAFB" }
   ];
 
   const crossDomainSkills = [
-    { name: "Web Marketing", icon: <FaChartLine size={32} /> },
-    { name: "Accounting", icon: <FaCalculator size={32} /> },
-    { name: "Japanese", icon: <FaLanguage size={32} /> }
+    { name: "Web Marketing", icon: <FaChartLine size={32} />, color: "#4CAF50" },
+    { name: "Accounting", icon: <FaCalculator size={32} />, color: "#2196F3" },
+    { name: "Japanese", icon: <FaLanguage size={32} />, color: "#E91E63" }
   ];
 
   const certifications = [
-    { name: "AWS Certified Developer Associate", status: "In Progress", icon: <FaAws size={32} /> },
-    { name: "MBA", status: "In Progress", icon: <FaGraduationCap size={32} /> }
+    { name: "AWS Certified Developer Associate", status: "In Progress", icon: <FaAws size={32} />, color: "#FF9900" },
+    { name: "MBA", status: "In Progress", icon: <FaGraduationCap size={32} />, color: "#9C27B0" }
   ];
 
   return (
@@ -522,37 +522,46 @@ const SkillsCards = ({ onClose }: { onClose: () => void }) => {
         gap: "20px",
         width: "90%"
       }}>
-        {skillsWithIcons.map((skill, index) => (
-          <>
-            <div 
-              key={skill.name}
-              style={{
-                background: "rgba(255, 255, 255, 0.15)", 
-                padding: "15px",
-                borderRadius: "10px",
-                textAlign: "center",
-                color: "white",
-                fontSize: "18px",
-                fontWeight: "bold",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: "10px"
-              }}
-            >
-              {skill.icon}
-              {skill.name}
-            </div>
-            {(index + 1) % 6 === 0 && index !== skillsWithIcons.length - 1 && (
-              <div style={{ 
-                gridColumn: "1 / -1", 
-                height: "1px", 
-                background: "rgba(255, 255, 255, 0.2)",
-                margin: "10px 0"
-              }} />
-            )}
-          </>
-        ))}
+        {skillsWithIcons.map((skill, index) => {
+          const [isHovered, setIsHovered] = useState(false);
+          
+          return (
+            <Fragment key={skill.name}>
+              <div 
+                style={{
+                  background: isHovered ? skill.color : "rgba(255, 255, 255, 0.15)", 
+                  padding: "15px",
+                  borderRadius: "10px",
+                  textAlign: "center",
+                  color: "white",
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "10px",
+                  transition: "background-color 0.3s ease",
+                  cursor: "pointer"
+                }}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
+                {cloneElement(skill.icon as ReactElement, { 
+                  style: { color: "white" } 
+                })}
+                {skill.name}
+              </div>
+              {(index + 1) % 6 === 0 && index !== skillsWithIcons.length - 1 && (
+                <div style={{ 
+                  gridColumn: "1 / -1", 
+                  height: "1px", 
+                  background: "rgba(255, 255, 255, 0.2)",
+                  margin: "10px 0"
+                }} />
+              )}
+            </Fragment>
+          );
+        })}
       </div>
       
       <h2 style={{ color: "white", marginBottom: "10px", marginTop: "20px" }}>Cross-Domain Knowledge</h2>
@@ -562,27 +571,37 @@ const SkillsCards = ({ onClose }: { onClose: () => void }) => {
         gap: "20px",
         width: "90%"
       }}>
-        {crossDomainSkills.map((skill) => (
-          <div 
-            key={skill.name}
-            style={{
-              background: "rgba(255, 255, 255, 0.15)", 
-              padding: "15px",
-              borderRadius: "10px",
-              textAlign: "center",
-              color: "white",
-              fontSize: "18px",
-              fontWeight: "bold",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: "10px"
-            }}
-          >
-            {skill.icon}
-            {skill.name}
-          </div>
-        ))}
+        {crossDomainSkills.map((skill) => {
+          const [isHovered, setIsHovered] = useState(false);
+          
+          return (
+            <div 
+              key={skill.name}
+              style={{
+                background: isHovered ? skill.color : "rgba(255, 255, 255, 0.15)", 
+                padding: "15px",
+                borderRadius: "10px",
+                textAlign: "center",
+                color: "white",
+                fontSize: "18px",
+                fontWeight: "bold",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "10px",
+                transition: "background-color 0.3s ease",
+                cursor: "pointer"
+              }}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              {cloneElement(skill.icon as ReactElement, { 
+                style: { color: "white" } 
+              })}
+              {skill.name}
+            </div>
+          );
+        })}
       </div>
 
       <h2 style={{ color: "white", marginBottom: "10px", marginTop: "20px" }}>Certification</h2>
@@ -592,37 +611,47 @@ const SkillsCards = ({ onClose }: { onClose: () => void }) => {
         gap: "20px",
         width: "90%"
       }}>
-        {certifications.map((cert) => (
-          <div 
-            key={cert.name}
-            style={{
-              background: "rgba(255, 255, 255, 0.15)", 
-              padding: "15px",
-              borderRadius: "10px",
-              textAlign: "center",
-              color: "white",
-              fontSize: "18px",
-              fontWeight: "bold",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: "10px"
-            }}
-          >
-            {cert.icon}
-            <div>
-              {cert.name}
-              <div style={{ 
-                fontSize: "14px", 
-                fontWeight: "normal", 
-                marginTop: "5px",
-                color: "rgba(255, 255, 255, 0.7)" 
-              }}>
-                {cert.status}
+        {certifications.map((cert) => {
+          const [isHovered, setIsHovered] = useState(false);
+          
+          return (
+            <div 
+              key={cert.name}
+              style={{
+                background: isHovered ? cert.color : "rgba(255, 255, 255, 0.15)", 
+                padding: "15px",
+                borderRadius: "10px",
+                textAlign: "center",
+                color: "white",
+                fontSize: "18px",
+                fontWeight: "bold",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "10px",
+                transition: "background-color 0.3s ease",
+                cursor: "pointer"
+              }}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              {cloneElement(cert.icon as ReactElement, { 
+                style: { color: "white" } 
+              })}
+              <div>
+                {cert.name}
+                <div style={{ 
+                  fontSize: "14px", 
+                  fontWeight: "normal", 
+                  marginTop: "5px",
+                  color: "rgba(255, 255, 255, 0.7)" 
+                }}>
+                  {cert.status}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
