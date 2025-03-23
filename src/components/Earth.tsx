@@ -296,6 +296,11 @@ const CareerCards = ({ onClose }: { onClose: () => void }) => {
     { name: "University Canada West", major: "Master of Business Administration" }
   ];
 
+  const certifications = [
+    { name: "AWS Certified Developer Associate", status: "In Progress", icon: <FaAws size={32} />, color: "#FF9900" },
+    { name: "MBA", status: "In Progress", icon: <FaGraduationCap size={32} />, color: "#9C27B0" }
+  ];
+
   return (
     <div
       style={{
@@ -401,6 +406,62 @@ const CareerCards = ({ onClose }: { onClose: () => void }) => {
         marginTop: "20px",
         width: "90%",
         textAlign: "left"
+      }}>Certification</h2>
+      <div style={{ 
+        display: "grid", 
+        gridTemplateColumns: "repeat(2, 1fr)", 
+        gap: "20px",
+        width: "90%"
+      }}>
+        {certifications.map((cert) => {
+          const [isHovered, setIsHovered] = useState(false);
+          
+          return (
+            <div 
+              key={cert.name}
+              style={{
+                background: isHovered ? cert.color : "rgba(255, 255, 255, 0.15)", 
+                padding: "15px",
+                borderRadius: "10px",
+                textAlign: "center",
+                color: "white",
+                fontSize: "18px",
+                fontWeight: "bold",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "10px",
+                transition: "background-color 0.3s ease",
+                cursor: "pointer"
+              }}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              {cloneElement(cert.icon as ReactElement, { 
+                style: { color: "white" } 
+              })}
+              <div>
+                {cert.name}
+                <div style={{ 
+                  fontSize: "14px", 
+                  fontWeight: "normal", 
+                  marginTop: "5px",
+                  color: "rgba(255, 255, 255, 0.7)" 
+                }}>
+                  {cert.status}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <h2 style={{ 
+        color: "white", 
+        marginBottom: "10px", 
+        marginTop: "20px",
+        width: "90%",
+        textAlign: "left"
       }}>Education</h2>
       <div style={{ 
         display: "grid", 
@@ -468,11 +529,6 @@ const SkillsCards = ({ onClose }: { onClose: () => void }) => {
     { name: "Web Marketing", icon: <FaChartLine size={32} />, color: "#4CAF50" },
     { name: "Accounting", icon: <FaCalculator size={32} />, color: "#2196F3" },
     { name: "Japanese", icon: <FaLanguage size={32} />, color: "#E91E63" }
-  ];
-
-  const certifications = [
-    { name: "AWS Certified Developer Associate", status: "In Progress", icon: <FaAws size={32} />, color: "#FF9900" },
-    { name: "MBA", status: "In Progress", icon: <FaGraduationCap size={32} />, color: "#9C27B0" }
   ];
 
   return (
@@ -599,56 +655,6 @@ const SkillsCards = ({ onClose }: { onClose: () => void }) => {
                 style: { color: "white" } 
               })}
               {skill.name}
-            </div>
-          );
-        })}
-      </div>
-
-      <h2 style={{ color: "white", marginBottom: "10px", marginTop: "20px" }}>Certification</h2>
-      <div style={{ 
-        display: "grid", 
-        gridTemplateColumns: "repeat(2, 1fr)", 
-        gap: "20px",
-        width: "90%"
-      }}>
-        {certifications.map((cert) => {
-          const [isHovered, setIsHovered] = useState(false);
-          
-          return (
-            <div 
-              key={cert.name}
-              style={{
-                background: isHovered ? cert.color : "rgba(255, 255, 255, 0.15)", 
-                padding: "15px",
-                borderRadius: "10px",
-                textAlign: "center",
-                color: "white",
-                fontSize: "18px",
-                fontWeight: "bold",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: "10px",
-                transition: "background-color 0.3s ease",
-                cursor: "pointer"
-              }}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            >
-              {cloneElement(cert.icon as ReactElement, { 
-                style: { color: "white" } 
-              })}
-              <div>
-                {cert.name}
-                <div style={{ 
-                  fontSize: "14px", 
-                  fontWeight: "normal", 
-                  marginTop: "5px",
-                  color: "rgba(255, 255, 255, 0.7)" 
-                }}>
-                  {cert.status}
-                </div>
-              </div>
             </div>
           );
         })}
