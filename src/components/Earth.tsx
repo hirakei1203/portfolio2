@@ -790,13 +790,10 @@ const IntroductionCards = ({ onClose }: { onClose: () => void }) => {
             }}>
               <FaUserAlt size={24} color="white" />
             </div>
-            <h3 style={{ margin: 0 }}>平野 啓太郎 / Keitaro Hirano</h3>
+            <h3 style={{ margin: 0 }}>Keitaro Hirano / 平野 桂太郎</h3>
           </div>
           <p style={{ lineHeight: "1.6", margin: "0 0 15px 0" }}>
-            バンクーバー在住のウェブエンジニアです。企業向けSaaSの開発とAI技術の活用に情熱を持っています。
-          </p>
-          <p style={{ lineHeight: "1.6", margin: "0 0 15px 0" }}>
-            Web engineer based in Vancouver. Passionate about developing business SaaS applications and utilizing AI technologies.
+            Web developer based in Vancouver. Passionate about coraporating each other and building readable and structured web applications.
           </p>
         </div>
 
