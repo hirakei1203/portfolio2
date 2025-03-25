@@ -195,7 +195,7 @@ const ProjectCards = ({ onClose }: { onClose: () => void }) => {
 
   const projects = [
     { 
-      name: "Vancouver Information Map", 
+      name: "AI powered Vancouver Information Map", 
       description: "Personalized Information Site",
       tech: "Laravel, Vue.js AWS",
       status: "In Progress"
