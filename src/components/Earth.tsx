@@ -69,7 +69,7 @@ const EarthMesh = ({
 
       {/* Introduction */}
       {(!isAnyModalOpen || (!isMobile && !isTablet)) && (
-        <Html position={getHtmlPosition(3, -4.2)} center>
+        <Html position={getHtmlPosition(0, -4.35)} center>
           <div style={{ 
             color: "white", 
             fontSize: isMobile ? "16px" : isTablet ? "18px" : "20px",
@@ -86,7 +86,7 @@ const EarthMesh = ({
 
       {/* Career */}
       {(!isAnyModalOpen || (!isMobile && !isTablet)) && (
-        <Html position={getHtmlPosition(2, -4.25)} center>
+        <Html position={getHtmlPosition(3, -4.1)} center>
           <div style={{ 
             color: "white", 
             fontSize: isMobile ? "16px" : isTablet ? "18px" : "20px",
@@ -103,7 +103,7 @@ const EarthMesh = ({
 
       {/* Project */}
       {(!isAnyModalOpen || (!isMobile && !isTablet)) && (
-        <Html position={getHtmlPosition(1, -4.34)} center>
+        <Html position={getHtmlPosition(2, -4.19)} center>
           <div style={{ 
             color: "white", 
             fontSize: isMobile ? "16px" : isTablet ? "18px" : "20px",
@@ -120,7 +120,7 @@ const EarthMesh = ({
 
       {/* Skills */}
       {(!isAnyModalOpen || (!isMobile && !isTablet)) && (
-        <Html position={getHtmlPosition(0, -4.4)} center>
+        <Html position={getHtmlPosition(1, -4.25)} center>
           <div style={{ 
             color: "white", 
             fontSize: isMobile ? "16px" : isTablet ? "18px" : "20px",
@@ -181,6 +181,7 @@ const EarthMesh = ({
 
 const ProjectCards = ({ onClose }: { onClose: () => void }) => {
   const [isMobile, setIsMobile] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -190,7 +191,14 @@ const ProjectCards = ({ onClose }: { onClose: () => void }) => {
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
-    return () => window.removeEventListener('resize', checkMobile);
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      clearTimeout(timer);
+    };
   }, []);
 
   const projects = [
@@ -221,7 +229,10 @@ const ProjectCards = ({ onClose }: { onClose: () => void }) => {
         justifyContent: "flex-start",
         alignItems: "center",
         overflowY: "auto",
-        zIndex: 1000
+        zIndex: 1000,
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(20px)",
+        transition: "opacity 0.5s ease, transform 0.5s ease"
       }}
     >
       <button
@@ -313,6 +324,7 @@ const ProjectCards = ({ onClose }: { onClose: () => void }) => {
 
 const CareerCards = ({ onClose }: { onClose: () => void }) => {
   const [isMobile, setIsMobile] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -322,7 +334,14 @@ const CareerCards = ({ onClose }: { onClose: () => void }) => {
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
-    return () => window.removeEventListener('resize', checkMobile);
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      clearTimeout(timer);
+    };
   }, []);
 
   const jobs = [
@@ -360,7 +379,10 @@ const CareerCards = ({ onClose }: { onClose: () => void }) => {
         justifyContent: "flex-start",
         alignItems: "center",
         overflowY: "auto",
-        zIndex: 1000
+        zIndex: 1000,
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(20px)",
+        transition: "opacity 0.5s ease, transform 0.5s ease"
       }}
     >
       <button
@@ -541,6 +563,7 @@ const CareerCards = ({ onClose }: { onClose: () => void }) => {
 
 const SkillsCards = ({ onClose }: { onClose: () => void }) => {
   const [isMobile, setIsMobile] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -550,7 +573,14 @@ const SkillsCards = ({ onClose }: { onClose: () => void }) => {
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
-    return () => window.removeEventListener('resize', checkMobile);
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      clearTimeout(timer);
+    };
   }, []);
 
   const skillsWithIcons = [
@@ -590,7 +620,10 @@ const SkillsCards = ({ onClose }: { onClose: () => void }) => {
         justifyContent: "flex-start",
         alignItems: "center",
         overflowY: "auto",
-        zIndex: 1000
+        zIndex: 1000,
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(20px)",
+        transition: "opacity 0.5s ease, transform 0.5s ease"
       }}
     >
       <button
@@ -705,6 +738,7 @@ const SkillsCards = ({ onClose }: { onClose: () => void }) => {
 
 const IntroductionCards = ({ onClose }: { onClose: () => void }) => {
   const [isMobile, setIsMobile] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -714,7 +748,15 @@ const IntroductionCards = ({ onClose }: { onClose: () => void }) => {
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
-    return () => window.removeEventListener('resize', checkMobile);
+    // アニメーション用の遅延
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
@@ -736,7 +778,10 @@ const IntroductionCards = ({ onClose }: { onClose: () => void }) => {
         justifyContent: "flex-start",
         alignItems: "center",
         overflowY: "auto",
-        zIndex: 1000
+        zIndex: 1000,
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(20px)",
+        transition: "opacity 0.5s ease, transform 0.5s ease"
       }}
     >
       <button
@@ -861,6 +906,14 @@ const Earth = () => {
   const [showCareer, setShowCareer] = useState(false);
   const [showSkills, setShowSkills] = useState(false);
   const [showIntroduction, setShowIntroduction] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowIntroduction(true);
+    }, 1500); // 1.5秒後に表示
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const isAnyModalOpen = showProjects || showCareer || showSkills || showIntroduction;
 
