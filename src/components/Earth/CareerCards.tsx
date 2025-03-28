@@ -1,4 +1,4 @@
-import { useState, useEffect, Fragment, cloneElement, ReactElement } from "react";
+import { useState, useEffect, cloneElement, ReactElement } from "react";
 import { FaTimes, FaBullhorn, FaCalendarAlt, FaMobileAlt, FaAws, FaGraduationCap, FaExternalLinkAlt } from "react-icons/fa";
 
 interface CareerCardsProps {

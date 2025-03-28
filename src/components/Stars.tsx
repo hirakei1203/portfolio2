@@ -1,6 +1,4 @@
 import * as THREE from "three";
-import { useRef } from "react";
-import { useFrame } from "@react-three/fiber";
 
 const Stars = () => {
   const starPositions = new Float32Array(3000); // numbers of star
