@@ -45,7 +45,7 @@ const EarthMesh = ({
     if (cloudsRef.current) cloudsRef.current.rotation.y += 0.0003;
   });
 
-  const getHtmlPosition = (index: number, xPosition?: number) => {
+  const getHtmlPosition = (index: number, xPosition?: number): [number, number, number] => {
     if (isMobile || isTablet) {
       return [0, 2 - index, 0];
     } else {

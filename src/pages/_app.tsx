@@ -1,8 +1,12 @@
-import type { AppProps } from 'next/app'
+import { AppProps } from 'next/app'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-export default function App({ Component, pageProps }: AppProps) {
+type CustomAppProps = AppProps & {
+  pageProps: any;
+}
+
+export default function App({ Component, pageProps }: CustomAppProps) {
   const router = useRouter()
 
   useEffect(() => {
