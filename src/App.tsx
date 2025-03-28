@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Earth from "./components/Earth"; 
 
 const App = () => {
