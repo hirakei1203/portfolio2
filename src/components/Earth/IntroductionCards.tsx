@@ -76,7 +76,7 @@ const IntroductionCards = ({ onClose }: IntroductionCardsProps) => {
         marginTop: "10px",
         width: "90%",
         textAlign: "left"
-      }}>自己紹介 / About Me</h2>
+      }}>Thank you for coming! / Arigato!</h2>
       
       <div style={{ 
         display: "flex", 
@@ -129,10 +129,10 @@ const IntroductionCards = ({ onClose }: IntroductionCardsProps) => {
             }}>
               <FaMapMarkerAlt size={24} color="white" />
             </div>
-            <h3 style={{ margin: 0 }}>ロケーション / Location</h3>
+            <h3 style={{ margin: 0 }}>Location / ロケーション</h3>
           </div>
           <p style={{ lineHeight: "1.6", margin: "0" }}>
-            カナダ・バンクーバー / Vancouver, Canada
+            Victoria Drive, Vancouver, Canada
           </p>
         </div>
 
@@ -155,13 +155,10 @@ const IntroductionCards = ({ onClose }: IntroductionCardsProps) => {
             }}>
               <FaLaptopCode size={24} color="white" />
             </div>
-            <h3 style={{ margin: 0 }}>専門分野 / Specialization</h3>
+            <h3 style={{ margin: 0 }}>Specialization / 専門分野</h3>
           </div>
           <p style={{ lineHeight: "1.6", margin: "0" }}>
-            バックエンド開発、クラウドアーキテクチャ、AIツール活用、ドメイン駆動設計
-          </p>
-          <p style={{ lineHeight: "1.6", margin: "0" }}>
-            Backend development, Cloud architecture, AI tool utilization, Domain-Driven Design
+            Backend development, Cloud architecture, Mobile development, Domain-Driven Design, MBA
           </p>
         </div>
       </div>
