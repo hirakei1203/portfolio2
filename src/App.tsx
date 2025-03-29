@@ -10,6 +10,7 @@ const App = () => {
         <meta property="og:description" content="Check out my personal portfolio built with React and Three.js!" />
         <meta property="og:image" content="https://hirakei1203.github.io/portfolio2/thumbnail.png" />
         <meta property="og:url" content="https://hirakei1203.github.io/portfolio2/" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="description" content="Check out my personal portfolio built with React and Three.js!" />
       </Helmet>
       <Earth />
