@@ -33,6 +33,12 @@ const ProjectCards = ({ onClose }: ProjectCardsProps) => {
       description: "Personalized Information Site",
       tech: "Laravel, Vue.js, AWS, OpenAI",
       status: "In Progress"
+    },
+    { 
+      name: "AI Agent Type Todo List", 
+      description: "Users can manage their ToDo List through by AI Agent ",
+      tech: "Laravel, Vue.js, AWS, OpenAI",
+      status: "In Progress"
     }
   ];
 
