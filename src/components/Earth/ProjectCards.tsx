@@ -35,9 +35,9 @@ const ProjectCards = ({ onClose }: ProjectCardsProps) => {
       status: "In Progress"
     },
     { 
-      name: "AI Agent Type Todo List", 
+      name: "AI poweredTodo List", 
       description: "Users can manage their ToDo List through by AI Agent ",
-      tech: "Laravel, Vue.js, AWS(Cognito, DynamoDB), OpenAI",
+      tech: "Laravel, Vue.js, AWS(EC2, DynamoDB), OpenAI",
       status: "In Progress"
     }
   ];
