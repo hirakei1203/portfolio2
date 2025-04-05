@@ -31,7 +31,7 @@ const ProjectCards = ({ onClose }: ProjectCardsProps) => {
     { 
       name: "AI powered Vancouver Information Map", 
       description: "Personalized Information Site",
-      tech: "Laravel, Vue.js, AWS, OpenAI",
+      tech: "Laravel, Vue.js, AWS(Cognito), OpenAI",
       status: "In Progress"
     },
     { 
