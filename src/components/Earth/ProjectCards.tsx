@@ -31,13 +31,13 @@ const ProjectCards = ({ onClose }: ProjectCardsProps) => {
     { 
       name: "AI powered Vancouver Information Map", 
       description: "Personalized Information Site",
-      tech: "Laravel, Vue.js, AWS(Cognito), OpenAI",
+      tech: "Laravel, Vue.js, AWS(Cognito, API Gateway, Lambda, S3), OpenAI",
       status: "In Progress"
     },
     { 
       name: "AI agent type Todo List", 
       description: "Users can manage their ToDo List through by AI Agent ",
-      tech: "Laravel, Vue.js, AWS(EC2, S3, DynamoDB, Cloudwatch), OpenAI",
+      tech: "Laravel, Vue.js, AWS(EC2, S3, DynamoDB), OpenAI",
       status: "In Progress"
     }
   ];
