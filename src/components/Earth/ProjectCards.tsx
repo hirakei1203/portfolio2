@@ -39,6 +39,12 @@ const ProjectCards = ({ onClose }: ProjectCardsProps) => {
       description: "Users can manage their ToDo List through AI Agent ",
       tech: "Laravel, Vue.js, AWS(EC2, S3, DynamoDB), OpenAI",
       status: "In Progress"
+    },
+    {
+      name: "Canada Japan Time converter", 
+      description: "Google Extension. Easy to convert Canada and Japan time!",
+      tech: "Javascript, HTML, CSS",
+      status: "Released: https://chromewebstore.google.com/detail/canada-japan-time-convert/okbofgodhgdmaiodflfjklncpkmockko?authuser=0&hl=ja"
     }
   ];
 
@@ -131,20 +137,25 @@ const ProjectCards = ({ onClose }: ProjectCardsProps) => {
               alignItems: "center",
               color: "rgba(255, 255, 255, 0.9)"
             }}>
-              <FaHammer 
-                style={{ 
-                  marginRight: "8px",
-                  animation: "hammer 1.5s ease-in-out infinite"
-                }} 
-              />
-              <style>{`
-                @keyframes hammer {
-                  0% { transform: rotate(0deg); }
-                  30% { transform: rotate(-30deg); }
-                  60% { transform: rotate(0deg); }
-                  100% { transform: rotate(0deg); }
-                }
-              `}</style>
+              {project.status.includes("In Progress") && (
+                <>
+                  <FaHammer 
+                    style={{ 
+                      marginRight: "8px",
+                      animation: "hammer 1.5s ease-in-out infinite"
+                    }} 
+                  />
+                  
+                  <style>{`
+                    @keyframes hammer {
+                      0% { transform: rotate(0deg); }
+                      30% { transform: rotate(-30deg); }
+                      60% { transform: rotate(0deg); }
+                      100% { transform: rotate(0deg); }
+                    }
+                  `}</style>
+                </>
+              )}
               {project.status}
             </div>
           </div>
