@@ -40,6 +40,7 @@ const CareerCards = ({ onClose }: CareerCardsProps) => {
 
   const certifications = [
     { name: "AWS Certified Developer Associate (DVA-C02)", status: "Certified", icon: <FaAws size={32} />, color: "#FF9900" },
+    { name: "AWS Certified Machine Learning - Specialty", status: "In Progress", icon: <FaAws size={32} />, color: "#FF9900" },
     { name: "MBA", status: "In Progress", icon: <FaGraduationCap size={32} />, color: "#9C27B0" }
   ];
 
