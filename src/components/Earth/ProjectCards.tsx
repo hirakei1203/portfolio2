@@ -29,8 +29,8 @@ const ProjectCards = ({ onClose }: ProjectCardsProps) => {
 
   const projects = [
     { 
-      name: "AI powered Vancouver Information Map", 
-      description: "Personalized Information Site",
+      name: "Ebisu", 
+      description: "AI Based Financial Data Analysis for Stock Investment",
       tech: "Laravel, Vue.js, AWS(Cognito, API Gateway, Lambda, S3), OpenAI",
       status: "In Progress"
     },
