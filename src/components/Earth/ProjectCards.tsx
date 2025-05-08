@@ -41,10 +41,10 @@ const ProjectCards = ({ onClose }: ProjectCardsProps) => {
       status: "In Progress"
     },
     {
-      name: "Canada Japan Time converter", 
-      description: "Google Extension. Easy to convert Canada and Japan time!",
+      name: "UniClock Global Time Converter", 
+      description: "Google Extension. Easy to convert global timezones!",
       tech: "Javascript, HTML, CSS",
-      status: "Released: https://chromewebstore.google.com/detail/canada-japan-time-convert/okbofgodhgdmaiodflfjklncpkmockko?authuser=0&hl=ja"
+      status: "Released: https://chromewebstore.google.com/detail/uniclock-global-time-conv/belaafioiijdggbiiamgahdfnnbkdflc?authuser=0&hl=ja"
     }
   ];
 
